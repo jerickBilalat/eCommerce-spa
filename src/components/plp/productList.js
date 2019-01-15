@@ -8,7 +8,7 @@ const ProductList = ({toShop, toShopSize, loadMoreProducts, limit}) => {
   const renderCards = () => (
     toShop ? 
     toShop.map( item => (
-        <ProductCard key={item._id} item={{...item}} />
+        <ProductCard key={item._id} productItem={{...item}} />
       ))
     : null
   )

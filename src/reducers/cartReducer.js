@@ -14,9 +14,17 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case MODIFY_CART_SUCCEEDED:
+      debugger
       return {
         ...state,
         cartItems: action.payload
+      }
+    case "INC_ITEM_QNTY":
+    debugger
+      const filteredCart = state.cartItems.filter( item => item._id !== action.payload._id )
+      return {
+        ...state,
+        cartItems: [...filteredCart, action.payload]
       }
     case FLASH_MESSAGE:
       return {...state, flashMessage: action.payload}

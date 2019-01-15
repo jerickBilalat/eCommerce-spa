@@ -34,34 +34,38 @@ function decreaseItemQuantity(id, differential) {
   }
 }
 
-function increaseItemQuantity(id, differential) {
+function increaseItemQuantity(newItem, differential) {
   debugger
   let cart = getCart();
   if(!cart) throw new Error("Can not read Local Storage cart");
 
   let updatedCart = [...cart];
+
+  let {_id: newItemID, name, price } = newItem;
+  let newCartItemQuantity;
   
-  // local cart is empty OR item being added is not in local cart
+  // local cart is empty OR newItem being added is not in local cart
   if (
     updatedCart.length === 0
     || 
-    (updatedCart.filter( item => item.id === id).length === 0)
+    (updatedCart.filter( cartItem => cartItem._id === newItemID).length === 0)
   ) {
     debugger
-    updatedCart.push({id, quantity: 1});
+    updatedCart.push({_id: newItem._id, quantity: differential});
     updateLocalCart(updatedCart);
-    return updatedCart;
+    return {_id: newItemID, name, price, quantity: differential};
   }else {
 
     debugger
-    updatedCart.forEach( item => {
-      if (item.id === id) {
-        item.quantity += differential;
+    updatedCart.forEach( cartItem => {
+      if (cartItem._id === newItemID) {
+        cartItem.quantity += differential;
+        newCartItemQuantity = cartItem.quantity;
       }
     });
     
     updateLocalCart(updatedCart);
-    return updatedCart;
+    return {_id: newItemID, name, price, quantity: newCartItemQuantity};
 
   }  
 }

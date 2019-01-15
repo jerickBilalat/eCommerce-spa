@@ -26,15 +26,23 @@ function modifyCartSucceeded(cart) {
   }
 }
 
+function increaseCartItemQuantitySucceeded(cartItem){
+    debugger
+    return {
+        type: "INC_ITEM_QNTY",
+        payload: cartItem
+    }
+}
+
 export function deleteCartItem(id) {
   let updatedCart = localCart.deleteItem(id);
     return modifyCartSucceeded(updatedCart);
 }
 
-export function increaseCartItemQuantity(id, differential) {
+export function increaseCartItemQuantity(item, differential) {
   
-  let updatedCart = localCart.increaseItemQuantity(id, differential);
-    return modifyCartSucceeded(updatedCart);
+  let updatedItem = localCart.increaseItemQuantity(item, differential);
+    return increaseCartItemQuantitySucceeded(updatedItem);
 }
 
 export function decreaseCartItemQuantity(id, differential) {
