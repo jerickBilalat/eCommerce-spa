@@ -1,11 +1,11 @@
 import React from 'react';
 
-const cartCard = ({id, quantity, deleteCartItem, increaseQuantity, decreaseQuantity}) => {
+const cartCard = ({id, name, price, quantity, deleteCartItem, increaseQuantity, decreaseQuantity}) => {
   return (
     <tr>
       <td><img src="images/shop-widget-02.jpg" alt=""/></td>
-      <td className="cart-title"><a href="#" >Productname</a></td>
-      <td>$999</td>
+      <td className="cart-title"><a href="#" >{name}</a></td>
+      <td>{price}</td>
       <td>
         <form className="qty-btns">
           <div className="qtyminus" onClick={() => decreaseQuantity(id, -1)}></div>
