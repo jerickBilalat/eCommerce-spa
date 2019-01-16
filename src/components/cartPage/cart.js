@@ -22,7 +22,7 @@ const cart = ({cartItems, deleteCartItem, increaseQuantity, decreaseQuantity, do
   
             <tbody>
               {cartItems.map(item => <CartCard 
-                key={item._id} 
+                key={item.id} 
                 {...item} 
                 deleteCartItem={deleteCartItem}
                 increaseQuantity={increaseQuantity}

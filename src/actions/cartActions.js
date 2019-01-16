@@ -37,7 +37,7 @@ export function deleteCartItem(id) {
 
 export function increaseCartItemQuantity(item, differential) {
   const {id, name, price} = item
-  let updatedCartQuantity = localCart.increaseItemQuantity(item, differential);
+  let updatedCartQuantity = localCart.increaseItemQuantity(id, differential);
   let updatedItem = { id, name, price, quantity: updatedCartQuantity }
     return increaseCartItemQuantitySucceeded(updatedItem);
 }

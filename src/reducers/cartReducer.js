@@ -20,11 +20,13 @@ export default function(state = initialState, action) {
         cartItems: action.payload
       }
     case "INC_ITEM_QNTY":
-    debugger
-      const filteredCart = state.cartItems.filter( item => item._id !== action.payload._id )
+      let itemIndex = state.cartItems.map(item => item.id).indexOf(action.payload.id);
+      let updatedCartItems = state.cartItems.map(item => item);
+      updatedCartItems.splice(itemIndex,1,action.payload);
+      debugger
       return {
         ...state,
-        cartItems: [...filteredCart, action.payload]
+        cartItems: updatedCartItems
       }
     case FLASH_MESSAGE:
       return {...state, flashMessage: action.payload}
