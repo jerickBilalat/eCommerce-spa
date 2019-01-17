@@ -9,10 +9,13 @@ const cartWidget = props => {
         <h4>Shopping Cart</h4>
       </div>
       <div id="cart">
-        {cartItems.map(item => (
-          <WidgetCartCard key={item.id} {...item} removeItem={removeItem} />
-        ))}
-
+        {cartItems.lenght ? (
+          cartItems.map(item => (
+            <WidgetCartCard key={item.id} {...item} removeItem={removeItem} />
+          ))
+        ) : (
+            <p>No cart items</p>
+        )}
         <span className="cart-subtotal">
           Subtotal: <strong>$100</strong>
         </span>

@@ -3,8 +3,9 @@
 function decreaseItemQuantity(id, differential) {
   debugger
   let cart = getCart(),
-      updatedCart = [];
-  
+      updatedCart = [],
+      newCartItemQuantity;
+
   if(!cart) throw new Error("Can not read Local Storage cart");
 
   if (
@@ -19,14 +20,17 @@ function decreaseItemQuantity(id, differential) {
     cart.forEach( item => {
       if (item.id === id) {
         item.quantity += differential;
-      }
-      if(item.quantity !== 0) {
-        updatedCart.push(item)
+        newCartItemQuantity = item.quantity;
+        if(newCartItemQuantity !== 0) {
+          updatedCart.push(item)
+        }
+      } else {
+        updatedCart.push(item);
       }
     });
     
     updateLocalCart(updatedCart);
-    return updatedCart;
+    return newCartItemQuantity;
 
   }else {
     debugger

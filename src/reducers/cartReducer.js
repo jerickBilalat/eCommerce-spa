@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
         ...state,
         cartItems: action.payload
       }
-    case "INC_ITEM_QNTY":
+    case "MODIFY_ITEM_QNTY":
       let itemIndex = state.cartItems.map(item => item.id).indexOf(action.payload.id);
       let updatedCartItems = state.cartItems.map(item => item);
       updatedCartItems.splice(itemIndex,1,action.payload);
@@ -28,6 +28,12 @@ export default function(state = initialState, action) {
         ...state,
         cartItems: updatedCartItems
       }
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        cartItems: state.cartItems.filter( item => item.id !== action.payload)
+      }
+      
     case FLASH_MESSAGE:
       return {...state, flashMessage: action.payload}
     default:

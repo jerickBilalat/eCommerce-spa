@@ -22,29 +22,34 @@ function modifyCartSucceeded(cart) {
   };
 }
 
-function increaseCartItemQuantitySucceeded(cartItem){
-    debugger
-    return {
-        type: "INC_ITEM_QNTY",
-        payload: cartItem
-    }
-}
 
 export function deleteCartItem(id) {
-  let updatedCart = localCart.deleteItem(id);
-  return modifyCartSucceeded(updatedCart);
+  localCart.deleteItem(id);
+  return {
+    type: "DELETE_ITEM",
+    payload: id
+  }
 }
 
-export function increaseCartItemQuantity(item, differential) {
-  const {id, name, price} = item
+export function increaseCartItemQuantity(productDetials, differential) {
+  const {id, name, price} = productDetials
   let updatedCartQuantity = localCart.increaseItemQuantity(id, differential);
   let updatedItem = { id, name, price, quantity: updatedCartQuantity }
-    return increaseCartItemQuantitySucceeded(updatedItem);
+    return {
+      type: "MODIFY_ITEM_QNTY",
+      payload: updatedItem
+  }
 }
 
-export function decreaseCartItemQuantity(id, differential) {
-  let updatedCart = localCart.decreaseItemQuantity(id, differential);
-  return modifyCartSucceeded(updatedCart);
+export function decreaseCartItemQuantity(productDetials, differential) {
+  const {id, name, price} = productDetials;
+  let updatedCartQuantity = localCart.decreaseItemQuantity(id, differential);
+  if(updatedCartQuantity === 0) return deleteCartItem(id);
+  let updatedItem = { id, name, price, quantity: updatedCartQuantity }
+  return {
+    type: "MODIFY_ITEM_QNTY",
+    payload: updatedItem
+}
 }
 
 export function syncCart() {

@@ -8,7 +8,7 @@ const cartCard = ({id, name, price, quantity, deleteCartItem, increaseQuantity, 
       <td>{price}</td>
       <td>
         <form className="qty-btns">
-          <div className="qtyminus" onClick={() => decreaseQuantity(id, -1)}></div>
+          <div className="qtyminus" onClick={() => decreaseQuantity({id, name, price}, -1)}></div>
           <input type='text' name="quantity" value={quantity} className="qty" readOnly={true} />
           <div className="qtyplus" onClick={() => increaseQuantity({id, name, price}, 1)}></div>
         </form>

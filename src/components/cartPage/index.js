@@ -21,12 +21,12 @@ class CartPage extends Component {
     this.props.dispatch(deleteCartItem(id));
   }
 
-  increaseQuantity = (id, differential) => {
-    this.props.dispatch(increaseCartItemQuantity(id, differential));
+  increaseQuantity = (productDetials, differential) => {
+    this.props.dispatch(increaseCartItemQuantity(productDetials, differential));
   }
 
-  decreaseQuantity = (id, differential) => {
-    this.props.dispatch(decreaseCartItemQuantity(id, differential));
+  decreaseQuantity = (productDetials, differential) => {
+    this.props.dispatch(decreaseCartItemQuantity(productDetials, differential));
   }
 
   renderContent = () => {

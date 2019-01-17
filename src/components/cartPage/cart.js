@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import CartCard from "./cartCard";
 
 
@@ -21,13 +22,20 @@ const cart = ({cartItems, deleteCartItem, increaseQuantity, decreaseQuantity, do
             
   
             <tbody>
-              {cartItems.map(item => <CartCard 
-                key={item.id} 
-                {...item} 
-                deleteCartItem={deleteCartItem}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                /> )}
+
+              {cartItems.lenght ? (
+                cartItems.map(item => (
+                  <CartCard 
+                    key={item.id} 
+                    {...item} 
+                    deleteCartItem={deleteCartItem}
+                    increaseQuantity={increaseQuantity}
+                    decreaseQuantity={decreaseQuantity}
+                  />
+                ))
+              ) : (
+                <tr><td>No items in cart. Click <Link to="/" >Here</Link> to browse our products</td></tr>
+              )}
             </tbody>
                 
             
