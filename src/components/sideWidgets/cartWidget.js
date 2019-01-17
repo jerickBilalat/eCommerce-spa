@@ -9,7 +9,7 @@ const cartWidget = props => {
         <h4>Shopping Cart</h4>
       </div>
       <div id="cart">
-        {cartItems.lenght ? (
+        {cartItems.length ? (
           cartItems.map(item => (
             <WidgetCartCard key={item.id} {...item} removeItem={removeItem} />
           ))

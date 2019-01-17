@@ -14,7 +14,7 @@ const cartCard = ({id, name, price, quantity, deleteCartItem, increaseQuantity, 
         </form>
         </td>
         <td className="cart-total">$999</td>
-        <td><a href="#" className="cart-remove" onClick={ () => deleteCartItem(id)}></a></td>
+        <td><a className="cart-remove" onClick={ () => deleteCartItem(id)}></a></td>
     </tr>
   );
 };

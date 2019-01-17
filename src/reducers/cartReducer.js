@@ -20,9 +20,15 @@ export default function(state = initialState, action) {
         cartItems: action.payload
       }
     case "MODIFY_ITEM_QNTY":
-      let itemIndex = state.cartItems.map(item => item.id).indexOf(action.payload.id);
+      let cartItemIds = state.cartItems.map( item => item.id);
       let updatedCartItems = state.cartItems.map(item => item);
-      updatedCartItems.splice(itemIndex,1,action.payload);
+      if(cartItemIds.includes(action.payload.id)) {
+        let itemIndex = state.cartItems.map(item => item.id).indexOf(action.payload.id);
+        updatedCartItems.splice(itemIndex,1,action.payload);
+      }else {
+        updatedCartItems.push(action.payload);
+      }
+      
       debugger
       return {
         ...state,

@@ -31,8 +31,8 @@ export function deleteCartItem(id) {
   }
 }
 
-export function increaseCartItemQuantity(productDetials, differential) {
-  const {id, name, price} = productDetials
+export function increaseCartItemQuantity(productDetails, differential) {
+  const {id, name, price} = productDetails
   let updatedCartQuantity = localCart.increaseItemQuantity(id, differential);
   let updatedItem = { id, name, price, quantity: updatedCartQuantity }
     return {
@@ -41,8 +41,8 @@ export function increaseCartItemQuantity(productDetials, differential) {
   }
 }
 
-export function decreaseCartItemQuantity(productDetials, differential) {
-  const {id, name, price} = productDetials;
+export function decreaseCartItemQuantity(productDetails, differential) {
+  const {id, name, price} = productDetails;
   let updatedCartQuantity = localCart.decreaseItemQuantity(id, differential);
   if(updatedCartQuantity === 0) return deleteCartItem(id);
   let updatedItem = { id, name, price, quantity: updatedCartQuantity }
