@@ -5,7 +5,7 @@ import {
 
 
 const initialState = {
-  cartItems: JSON.parse(localStorage.getItem("cart")) || [],
+  cartItems: [],
   isLoading: false,
   error: null,
   flashMessage: ''
