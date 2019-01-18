@@ -4,6 +4,8 @@ import ProductDetail from "./productDetail";
 import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
 import { getProductDetail } from '../../actions/productActions';
+import { increaseCartItemQuantity } from '../../actions/cartActions';
+
 
 class productDetailPage extends Component {
 
@@ -16,13 +18,18 @@ class productDetailPage extends Component {
       })
   }
 
+  doIncreaseCartItemQuantity = (prodDetail, differential) => {
+    debugger
+    this.props.dispatch(increaseCartItemQuantity(prodDetail, differential))
+  }
+
   render() {
     const {prodDetail} = this.props.products;
     return (
       <Layout>
         <div className="row">
           {prodDetail ? 
-            <ProductDetail detail={prodDetail}/>
+            <ProductDetail {...prodDetail} increaseQuantity={this.doIncreaseCartItemQuantity}/>
             : "Loading"
           }
           <div className="col-md-3 col-sm-5">

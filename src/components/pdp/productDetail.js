@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProductCard from "../common/productCard";
 import {Link} from "react-router-dom";
-import { increaseCartItemQuantity } from '../../actions/cartActions';
 
-
-class productDetail extends Component {
-  render() {
-    const {name} = this.props.detail;
-    return (
-      <React.Fragment>
+const ProductDetail = ({_id, name, price, increaseQuantity}) => {
+  const prodDetail = {id: _id, name, price};
+  debugger
+  return (
+    <React.Fragment>
         <div className="col-md-12 extra-gutter-right">
           <div className="with-btn margin-bottom-20">
-            <Link to="/"><a className="button border medium">Back to shop</a></Link>
+            <Link to="/"><button className="button border medium">Back to shop</button></Link>
           </div>
         </div>
         <div className="col-md-9 col-sm-7 extra-gutter-right">
@@ -29,18 +27,13 @@ class productDetail extends Component {
               <div className="product-details">
 
                 <h4>{name}</h4>
-                <span className="price"><del>$129</del> <mark>$99</mark></span>
+                <span className="price"><del>$129</del> <mark>{price}</mark></span>
                 <span className="divider"></span>
                 <p>Etiam lobortis dolor eros sed lorem sodales imperdiet dapibus. Maecenas faucibus urna sed turpis lacinia consectetur. Mauris dolor bibendum nibh consectetuer.<br/></p>
-                <form action="#">
-                    <div className="qtyminus"></div>
-                    <input type="text" name="quantity" value='1' className="qty" />
-                    <div className="qtyplus"></div>
-                </form>
 
                 <div className="clearfix"></div>
 
-                <a className="button">Add to Cart</a>
+                <a className="button" onClick={() => increaseQuantity(prodDetail, 1)}>Add to Cart</a>
 
               </div>
             </div>
@@ -93,25 +86,11 @@ class productDetail extends Component {
                   </table>
                 </div>
               </div>
-
-
-              <h4 className="headline with-border margin-top-50 margin-bottom-35">Related Products</h4>
-              <div className="row">
-                
-                <ProductCard />
-                
-                <ProductCard />
-                
-                <ProductCard />
-              </div>
-
-
             </div>
           </div>
         </div>
 	    </React.Fragment>
-    );
-  }
+  )
 }
 
-export default productDetail;
+export default ProductDetail;

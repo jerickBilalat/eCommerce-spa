@@ -8,7 +8,7 @@ import './css/colors/blue.css'
 import { syncCart } from './actions/cartActions';
 
 import ProductListPage from "./components/plp";
-import ProductDetailPage from "./components/productDetailPage";
+import ProductDetailPage from "./components/pdp";
 import Cart from "./components/cartPage";
 
 const Test = () => {
