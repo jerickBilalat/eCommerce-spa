@@ -2715,6 +2715,11 @@ cssstyle@^1.0.0, cssstyle@^1.1.1:
   dependencies:
     cssom "0.3.x"
 
+currency.js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/currency.js/-/currency.js-1.2.1.tgz#18d42ac74d833795051f4a310c83f041013a882f"
+  integrity sha512-7t0jYDZeQYCcaxpgwNOiBz8GaG/qdqTdo+kcTYgCuCNx1p2jLMpJt8h34TJ5INtN9jhryAiLK/atmjwUf13t4A==
+
 cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"

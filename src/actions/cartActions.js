@@ -1,4 +1,5 @@
 import * as api from "../api";
+import currency from "currency.js";
 import localCart from "../components/utils/localCart";
 import { MODIFY_CART_SUCCEEDED, FLASH_MESSAGE } from "./types";
 
@@ -34,7 +35,10 @@ export function deleteCartItem(id) {
 export function increaseCartItemQuantity(productDetails, differential) {
   const {id, name, price} = productDetails
   let updatedCartQuantity = localCart.increaseItemQuantity(id, differential);
-  let updatedItem = { id, name, price, quantity: updatedCartQuantity }
+  let cartItemValue = getItemValue(price, updatedCartQuantity);
+  console.log( typeof cartItemValue )
+  debugger
+  let updatedItem = { id, name, price, quantity: updatedCartQuantity, value: cartItemValue }
     return {
       type: "MODIFY_ITEM_QNTY",
       payload: updatedItem
@@ -45,13 +49,18 @@ export function decreaseCartItemQuantity(productDetails, differential) {
   const {id, name, price} = productDetails;
   let updatedCartQuantity = localCart.decreaseItemQuantity(id, differential);
   if(updatedCartQuantity === 0) return deleteCartItem(id);
-  let updatedItem = { id, name, price, quantity: updatedCartQuantity }
+  let cartItemValue = getItemValue(price, updatedCartQuantity);
+  let updatedItem = { id, name, price, quantity: updatedCartQuantity, value: cartItemValue }
   return {
     type: "MODIFY_ITEM_QNTY",
     payload: updatedItem
 }
 }
 
+function getItemValue(price, quantity) {
+  console.log(currency(price).multiply(quantity).value.toString(10));
+  return currency(price).multiply(quantity).value.toString();
+}
 export function syncCart() {
   return dispatch => {
     let cart = localCart.getCart(),
@@ -68,15 +77,14 @@ export function syncCart() {
 
 			cart.forEach(cartItem => {
 				if (inStockIds.includes(cartItem.id)) {
-					const inStockItem = inStock.filter(inStockItem => inStockItem["_id"] === cartItem.id)[0],
-						{_id: inStockId, name, price, quantity} = inStockItem;
+					const inStockItem = inStock.filter(inStockItem => inStockItem["_id"] === cartItem.id)[0];
+					const {_id: inStockId, name, price, quantity} = inStockItem;
 
 					if (inStockItem.quantity < cartItem.quantity) {
-
-						localCart.quantitySync(cartItem.id, inStockItem.quantity)
-						updatedCart.push({id: inStockId, name, price, quantity});
+            localCart.quantitySync(cartItem.id, inStockItem.quantity)
+						updatedCart.push({id: inStockId, name, price, quantity, value: getItemValue(inStockItem.price, inStockItem.quantity)});
 					} else {
-						updatedCart.push({id: inStockId, name, price, quantity: cartItem.quantity});
+						updatedCart.push({id: inStockId, name, price, quantity: cartItem.quantity, value: getItemValue(inStockItem.price, cartItem.quantity)});
 					}
 				} else {
 					localCart.deleteItem(cartItem.id);

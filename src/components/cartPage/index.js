@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {getSubTotal} from "../../reducers/cartReducer";
+
 
 import { syncCart, deleteCartItem, increaseCartItemQuantity, decreaseCartItemQuantity } from '../../actions/cartActions';
 
@@ -35,7 +37,8 @@ class CartPage extends Component {
     if(state.showOrderConfirm) return (<OrderConfirm doGoBackToCart={() => this.setState({showOrderConfirm: false})} />)
     
     return <Cart 
-      cartItems={props.cart.cartItems} 
+      cartItems={props.cart.cartItems}
+      subTotal={props.subTotal}
       deleteCartItem={deleteCartItem} 
       doRenderOrderConfirm={() => this.setState({showOrderConfirm: true})}
       increaseQuantity={increaseQuantity}
@@ -56,7 +59,8 @@ class CartPage extends Component {
 
 function mapStateToProps(state){
   return {
-    cart: state.cart
+    cart: state.cart,
+    subTotal: getSubTotal(state)
   }
 }
 

@@ -3,6 +3,7 @@ import PopularProductsWidget from "./popularProductsWidget";
 import CartWidget from "./cartWidget";
 import {connect} from 'react-redux';
 import { deleteCartItem } from '../../actions/cartActions';
+import {getSubTotal} from "../../reducers/cartReducer";
 
 class Widgets extends Component {
 
@@ -13,7 +14,7 @@ class Widgets extends Component {
   render() {
     return (
       <React.Fragment>
-        <CartWidget cartItems={this.props.cart.cartItems} removeItem={this.removeLocalCartItem} />
+        <CartWidget cartItems={this.props.cart.cartItems} removeItem={this.removeLocalCartItem} subTotal={this.props.subTotal} />
         <PopularProductsWidget />
       </React.Fragment>
     );
@@ -22,7 +23,8 @@ class Widgets extends Component {
 
 function mapStateToProps(state){
   return {
-    cart: state.cart
+    cart: state.cart,
+    subTotal: getSubTotal(state)
   }
 }
 

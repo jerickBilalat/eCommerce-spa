@@ -1,8 +1,8 @@
 import React from "react";
 import WidgetCartCard from "./widgetCartCard";
+import {Link} from "react-router-dom";
 
-const cartWidget = props => {
-  const { cartItems, removeItem } = props;
+const cartWidget = ({cartItems, removeItem, subTotal}) => {
   return (
     <div className="widget">
       <div className="headline no-margin">
@@ -17,15 +17,9 @@ const cartWidget = props => {
             <p>No cart items</p>
         )}
         <span className="cart-subtotal">
-          Subtotal: <strong>$100</strong>
+          Subtotal: <strong>${subTotal}</strong>
         </span>
-
-        <a href="#" className="button gray">
-          View Cart
-        </a>
-        <a href="#" className="button margin-top-5">
-          Checkout
-        </a>
+        <Link to="/cart" className="button gray">View Cart</Link>
       </div>
     </div>
   );

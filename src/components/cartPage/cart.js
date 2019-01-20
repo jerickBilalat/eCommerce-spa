@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import CartCard from "./cartCard";
 
 
-const cart = ({cartItems, deleteCartItem, increaseQuantity, decreaseQuantity, doRenderOrderConfirm }) => {
+const cart = ({cartItems, subTotal, deleteCartItem, increaseQuantity, decreaseQuantity, doRenderOrderConfirm }) => {
   return (
     <React.Fragment>
       <div className="row">
@@ -27,7 +27,7 @@ const cart = ({cartItems, deleteCartItem, increaseQuantity, decreaseQuantity, do
                 cartItems.map(item => (
                   <CartCard 
                     key={item.id} 
-                    {...item} 
+                    {...item}
                     deleteCartItem={deleteCartItem}
                     increaseQuantity={increaseQuantity}
                     decreaseQuantity={decreaseQuantity}
@@ -56,7 +56,7 @@ const cart = ({cartItems, deleteCartItem, increaseQuantity, decreaseQuantity, do
             <tbody>
               <tr>
                 <th>Cart Subtotal</th>
-                <td><strong>$99.00</strong></td>
+                <td><strong>${subTotal}</strong></td>
               </tr>
   
               <tr>
@@ -66,7 +66,7 @@ const cart = ({cartItems, deleteCartItem, increaseQuantity, decreaseQuantity, do
   
               <tr>
                 <th>Order Total</th>
-                <td><strong>$99.00</strong></td>
+                <td><strong>${subTotal}</strong></td>
               </tr>
             </tbody>
           </table>

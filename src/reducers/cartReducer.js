@@ -2,7 +2,7 @@ import {
   MODIFY_CART_SUCCEEDED,
   FLASH_MESSAGE
 } from "../actions/types";
-
+import currency from "currency.js";
 
 const initialState = {
   cartItems: [],
@@ -14,7 +14,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case MODIFY_CART_SUCCEEDED:
-      debugger
       return {
         ...state,
         cartItems: action.payload
@@ -45,4 +44,14 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
+}
+
+
+// Selectors
+const reducer = function ( accumulator, currentValue ) {
+  console.log(currency(accumulator).add(currentValue).value.toString(10));
+  return currency(accumulator).add(currentValue).value.toString();
+}
+export function getSubTotal(state) {
+ return state.cart.cartItems.map( item => item.value).reduce( reducer, 0);
 }
