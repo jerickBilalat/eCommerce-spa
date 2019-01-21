@@ -49,9 +49,17 @@ export default function(state = initialState, action) {
 
 // Selectors
 const reducer = function ( accumulator, currentValue ) {
-  console.log(currency(accumulator).add(currentValue).value.toString(10));
-  return currency(accumulator).add(currentValue).value.toString();
+  let value = currency(accumulator).add(currentValue);
+  return value.format();
 }
 export function getSubTotal(state) {
- return state.cart.cartItems.map( item => item.value).reduce( reducer, 0);
+ return state.cart.cartItems.map( item => item.value.toString()).reduce( reducer, "0");
+}
+
+export function getShippingTotal(state){
+  return "0";
+}
+
+export function getTotal() {
+  return 
 }

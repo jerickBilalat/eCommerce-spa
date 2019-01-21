@@ -59,7 +59,7 @@ export function decreaseCartItemQuantity(productDetails, differential) {
 
 function getItemValue(price, quantity) {
   console.log(currency(price).multiply(quantity).value.toString(10));
-  return currency(price).multiply(quantity).value.toString();
+  return currency(price).multiply(quantity.toString()).format()
 }
 export function syncCart() {
   return dispatch => {

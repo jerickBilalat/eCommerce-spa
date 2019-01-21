@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 
 class orderForm extends Component {
   render() {
+		const { name, email, phone, message } = this.props.formFields,
+					{subTotal, cartItems, shippingTotal, total} = this.props;
     return (
 
       <Fragment>
@@ -19,17 +21,16 @@ class orderForm extends Component {
             <div className="col-xs-6">
               <address>
               <strong>Customer Info:</strong><br />
-                John Smith<br />
-                1234 Main<br />
-                Apt. 4B<br />
-                Springfield, ST 54321
+                {name}<br />
+								{email}<br />
+								{phone}
               </address>
             </div>
 
             <div className="col-xs-6">
               <address>
                 <strong>Message:</strong><br/>
-                <p>none</p>
+                <p>{message}</p>
               </address>
             </div>
             
@@ -57,41 +58,35 @@ class orderForm extends Component {
                   </tr>
     						</thead>
     						<tbody>
-    							<tr>
-    								<td>BS-200</td>
-    								<td className="text-center">$10.99</td>
-    								<td className="text-center">1</td>
-    								<td className="text-right">$10.99</td>
-    							</tr>
-                                <tr>
-        							<td>BS-400</td>
-    								<td className="text-center">$20.00</td>
-    								<td className="text-center">3</td>
-    								<td className="text-right">$60.00</td>
-    							</tr>
-                                <tr>
-            						<td>BS-1000</td>
-    								<td className="text-center">$600.00</td>
-    								<td className="text-center">1</td>
-    								<td className="text-right">$600.00</td>
-    							</tr>
+									{cartItems.map(item => (
+										<tr key={item.id}>
+											<td>
+												{item.name}<br />
+												some text<br />
+												some details<br />
+											</td>
+											<td className="text-center">{item.price}</td>
+											<td className="text-center">{item.quantity}</td>
+    									<td className="text-right">{item.value}</td>
+										</tr>
+									))}
     							<tr>
     								<td className="thick-line"></td>
     								<td className="thick-line"></td>
     								<td className="thick-line text-center"><strong>Subtotal</strong></td>
-    								<td className="thick-line text-right">$670.99</td>
+    								<td className="thick-line text-right">${subTotal}</td>
     							</tr>
     							<tr>
     								<td className="no-line"></td>
     								<td className="no-line"></td>
     								<td className="no-line text-center"><strong>Shipping</strong></td>
-    								<td className="no-line text-right">$15</td>
+    								<td className="no-line text-right">${shippingTotal}</td>
     							</tr>
     							<tr>
     								<td className="no-line"></td>
     								<td className="no-line"></td>
     								<td className="no-line text-center"><strong>Total</strong></td>
-    								<td className="no-line text-right">$685.99</td>
+    								<td className="no-line text-right">${total}</td>
     							</tr>
     						</tbody>
     					</table>
