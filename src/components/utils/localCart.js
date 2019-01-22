@@ -1,12 +1,9 @@
 
 
 function decreaseItemQuantity(id, differential) {
-  debugger
   let cart = getCart(),
       updatedCart = [],
       newCartItemQuantity;
-
-  if(!cart) throw new Error("Can not read Local Storage cart");
 
   if (
       (cart.length !== 0) 
@@ -16,7 +13,6 @@ function decreaseItemQuantity(id, differential) {
       (cart.filter( item => item.id === id)[0].quantity > 0)
   ) {
 
-    debugger
     cart.forEach( item => {
       if (item.id === id) {
         item.quantity += differential;
@@ -33,15 +29,12 @@ function decreaseItemQuantity(id, differential) {
     return newCartItemQuantity;
 
   }else {
-    debugger
     throw new Error("Cart is empty or item is not in cart");
   }
 }
 
 function increaseItemQuantity(id, differential) {
-  debugger
   const cart = getCart();
-  if(!cart) throw new Error("Can not read Local Storage cart");
 
   let updatedCart = [...cart],
       newCartItemQuantity;
@@ -52,14 +45,12 @@ function increaseItemQuantity(id, differential) {
     || 
     (updatedCart.filter( cartItem => cartItem.id === id).length === 0)
   ) {
-    debugger
     updatedCart.push({id, quantity: differential});
     updateLocalCart(updatedCart);
     newCartItemQuantity = differential;
     return newCartItemQuantity;
   }else {
 
-    debugger
     updatedCart.forEach( cartItem => {
       if (cartItem.id === id) {
         cartItem.quantity += differential;
@@ -82,19 +73,14 @@ function modifyItemQuantity(id, differential) {
   // local cart is empty OR item being added is not in local cart
   if ((cart && cart.length <= 0) || 
     (cart.filter( item => item.id === id).length === 0)) {
-    debugger
     cart.push({id, quantity: 1});
     updateLocalCart(cart);
     return cart;
   }
   
-
-  debugger
-
   // push each item in updatedCart if quantity is not zero
   cart.forEach( item => {
     if (item.id === id) {
-      debugger
       item.quantity += differential;
       if(item.quantity !== 0) {
         updatedCart.push(item);
@@ -109,12 +95,9 @@ function modifyItemQuantity(id, differential) {
 }
 
 function quantitySync(id, int) {
-  debugger
   let cart = getCart();
   let updatedItem;
 
-
-  debugger
   cart = cart.map(item => {
 
     if (item.id === id) {
@@ -132,7 +115,6 @@ function quantitySync(id, int) {
 
 
 function deleteItem(id) {
-  debugger
   let cart = getCart();
 
   cart = cart.filter(item => item.id !== id);
@@ -151,7 +133,6 @@ function getItemQuantity(id){
 
   if(items.length === 0) return 0;
 
-  debugger
   return items[0].quantity;
 
 }

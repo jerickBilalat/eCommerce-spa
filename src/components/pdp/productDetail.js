@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 const ProductDetail = ({_id, name, price, increaseQuantity}) => {
   const prodDetail = {id: _id, name, price};
-  debugger
   return (
     <React.Fragment>
         <div className="col-md-12 extra-gutter-right">

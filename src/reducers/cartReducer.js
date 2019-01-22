@@ -28,7 +28,6 @@ export default function(state = initialState, action) {
         updatedCartItems.push(action.payload);
       }
       
-      debugger
       return {
         ...state,
         cartItems: updatedCartItems

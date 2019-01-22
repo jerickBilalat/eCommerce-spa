@@ -60,7 +60,6 @@ export function modifyItemQuantity(id, differentialAmount ) {
           const localItemQuantity = localCart.getItemQuantity(id);
           
           if(productInStockQuantity > localItemQuantity ) {
-            debugger
             updatedCart = localCart.modifyItemQuantity(productId, differentialAmount);
             return {
               isAddSuccess: true,
@@ -68,7 +67,6 @@ export function modifyItemQuantity(id, differentialAmount ) {
               cart: updatedCart
             }
           }else if(productInStockQuantity < localItemQuantity) {
-            debugger
             let cart;
             let message = `Can only purchase a limited in stock quantity of ${productInStockQuantity}. The quantity of  in your cart is now equal to ${productInStockQuantity}`;
             localCart.quantitySync(productInStockQuantity);
@@ -79,7 +77,6 @@ export function modifyItemQuantity(id, differentialAmount ) {
               message
             }
           }else {
-            debugger
             // notify user product has only have limited in stock
             // update product availabity in store for affected comps i.g. productCard and productDetail
             let message = `Can only purchase a limited in strock quantity of ${productInStockQuantity}`;
@@ -111,7 +108,6 @@ export function fetchCart() {
 
   return client.get(`api/product/articles_by_id?id=${cartItemIds}&type=array`)
     .then( res => {
-      debugger
       let inStock = res.data;
       let inStockIds = inStock.map(item => item["_id"]);
 
@@ -130,18 +126,15 @@ export function fetchCart() {
 
       cart.forEach( item => {
         if(inStockIds.includes(item.id)) {
-          debugger
           let availableItem = inStock.filter( inStockItem => inStockItem["_id"] === item.id )[0];
         
           if(availableItem.quantity < item.quantity){
-            debugger
             updatedCart.push(localCart.quantitySync(item.id, availableItem.quantity))
           }else {
             updatedCart.push(item)
           }
 
         }else {
-          debugger
           localCart.deleteItem(item.id);
         }
 

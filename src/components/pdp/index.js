@@ -19,7 +19,6 @@ class productDetailPage extends Component {
   }
 
   doIncreaseCartItemQuantity = (prodDetail, differential) => {
-    debugger
     this.props.dispatch(increaseCartItemQuantity(prodDetail, differential))
   }
 
