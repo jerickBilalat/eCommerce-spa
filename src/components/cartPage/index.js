@@ -99,8 +99,6 @@ function mapStateToProps(state){
   const subTotal =  getSubTotal(state),
         shippingTotal = getShippingTotal(state),
         total = currency(subTotal).add(shippingTotal).format();
-
-  debugger
   return {
     cart: state.cart,
     subTotal,

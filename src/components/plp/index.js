@@ -1,12 +1,11 @@
 
 import React, { Component } from 'react';
-
 import ProductList from "./productList";
 import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
 
 import { connect } from 'react-redux';
-import { getProductsToShop ,getBrands, getWoods, fetchProducts, fetchCartItems } from '../../actions/productActions';
+import {getBrands, getWoods, fetchProducts} from '../../actions/productActions';
 
 class ProductListPage extends Component {
 
@@ -57,7 +56,7 @@ class ProductListPage extends Component {
     const {limit} = this.state;
     
     return (
-      <Layout >   
+      <Layout >
         <div className="row">
           <div className="col-sm-12">
             <p className="with-border">Filter ></p>
