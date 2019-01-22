@@ -5,18 +5,12 @@ import { MODIFY_CART_SUCCEEDED, FLASH_MESSAGE } from "./types";
 
 import { toast } from "react-toastify";
 
-// todo: need to include to the cart actions
-// maybe even be a generic notification system
 function flashMessage(message) {
   return {
     type: FLASH_MESSAGE,
     payload: message
   };
 }
-
-////////////////////
-// CART ACTIONS
-//////////////////////
 
 function modifyCartSucceeded(cart) {
   return {
@@ -28,19 +22,21 @@ function modifyCartSucceeded(cart) {
 
 export function deleteCartItem(id) {
   localCart.deleteItem(id);
+  toast.success("Item deleted");
   return {
     type: "DELETE_ITEM",
     payload: id
   }
 }
 
+
+
 export function increaseCartItemQuantity(productDetails, differential) {
   const {id, name, price} = productDetails
   let updatedCartQuantity = localCart.increaseItemQuantity(id, differential);
   let cartItemValue = getItemValue(price, updatedCartQuantity);
-  console.log( typeof cartItemValue )
-  debugger
   let updatedItem = { id, name, price, quantity: updatedCartQuantity, value: cartItemValue }
+  toast.success("Item quantity increased");
     return {
       type: "MODIFY_ITEM_QNTY",
       payload: updatedItem
@@ -53,14 +49,15 @@ export function decreaseCartItemQuantity(productDetails, differential) {
   if(updatedCartQuantity === 0) return deleteCartItem(id);
   let cartItemValue = getItemValue(price, updatedCartQuantity);
   let updatedItem = { id, name, price, quantity: updatedCartQuantity, value: cartItemValue }
+  toast.success("Item quantity decreased");
   return {
     type: "MODIFY_ITEM_QNTY",
     payload: updatedItem
 }
 }
 
+// to do: utilty function, refactor to a module
 function getItemValue(price, quantity) {
-  console.log(currency(price).multiply(quantity).value.toString(10));
   return currency(price).multiply(quantity.toString()).format()
 }
 export function syncCart() {
@@ -76,7 +73,9 @@ export function syncCart() {
       api.fetchMultipleFilteredProducts(cartItemIds).then(res => {
         
         const inStock = res.data,
-          inStockIds = inStock.map(item => item["_id"]);
+              inStockIds = inStock.map(item => item["_id"]);
+        
+        let flashMessageTexts = [];
 
         cart.forEach(cartItem => {
           if (inStockIds.includes(cartItem.id)) {
@@ -85,17 +84,23 @@ export function syncCart() {
 
             if (inStockItem.quantity < cartItem.quantity) {
               localCart.quantitySync(cartItem.id, inStockItem.quantity)
+              flashMessageTexts.push(`${inStockItem.name} only has ${inStockItem.quantity} in stock`)
               updatedCart.push({id: inStockId, name, price, quantity, value: getItemValue(inStockItem.price, inStockItem.quantity)});
             } else {
               updatedCart.push({id: inStockId, name, price, quantity: cartItem.quantity, value: getItemValue(inStockItem.price, cartItem.quantity)});
             }
           } else {
+            flashMessageTexts.push(`Our product with an ID of ${cartItem.id} is out of stock`);
             localCart.deleteItem(cartItem.id);
           }
           });
-          toast.info("Cart updated.",{
-            position: toast.POSITION.BOTTOM_LEFT
-          });
+         
+          if(flashMessageTexts.length) {
+            toast.warn("Cart is modified.",{
+              position: toast.POSITION.BOTTOM_LEFT
+            });
+            dispatch(flashMessage({status: "notice", title: "Cart is modified", texts: flashMessageTexts}));
+          }
         return dispatch(modifyCartSucceeded(updatedCart));
       });
     }
