@@ -22,6 +22,7 @@ class ProductListPage extends Component {
   }
 
   componentDidMount(){
+    console.log(this.props.match)
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
 

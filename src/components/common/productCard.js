@@ -12,7 +12,7 @@ const productCard = ({productItem, dispatch}) => {
 					<figure>
 						<Link to={`/product_detail/${id}`} ><img src="images/shop-01.jpg" alt="" /></Link>
 						<figcaption className="item-description">
-							<a><h5>{name}</h5></a>
+							<Link to={`/product_detail/${id}`} ><h5>{name}</h5></Link>
 							<span className="sale"><del>$9</del> <mark>{price}</mark></span>
 							<button onClick={()=> dispatch(increaseCartItemQuantity({id, name, price}, 1))} className="button border medium">Add to Cart</button>
 						</figcaption>

@@ -1,5 +1,4 @@
 import React from 'react';
-import ProductCard from "../common/productCard";
 import {Link} from "react-router-dom";
 
 const ProductDetail = ({_id, name, price, increaseQuantity}) => {
@@ -32,7 +31,7 @@ const ProductDetail = ({_id, name, price, increaseQuantity}) => {
 
                 <div className="clearfix"></div>
 
-                <a className="button" onClick={() => increaseQuantity(prodDetail, 1)}>Add to Cart</a>
+                <button className="button" onClick={() => increaseQuantity(prodDetail, 1)}>Add to Cart</button>
 
               </div>
             </div>
@@ -44,8 +43,7 @@ const ProductDetail = ({_id, name, price, increaseQuantity}) => {
             <div className="col-md-12">
 
               <ul className="tabs-nav">
-                <li className="active"><a >Description</a></li>
-                <li><a >Additional Information</a></li>
+                <li className="active"><span>Description</span></li>
               </ul>
 
               <div className="tabs-container">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PopularProductsWidget from "./popularProductsWidget";
 import CartWidget from "./cartWidget";
 import {connect} from 'react-redux';
 import { deleteCartItem } from '../../actions/cartActions';
@@ -15,7 +14,6 @@ class Widgets extends Component {
     return (
       <React.Fragment>
         <CartWidget cartItems={this.props.cart.cartItems} removeItem={this.removeLocalCartItem} subTotal={this.props.subTotal} />
-        <PopularProductsWidget />
       </React.Fragment>
     );
   }

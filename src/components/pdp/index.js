@@ -11,6 +11,7 @@ class productDetailPage extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
+    console.log(this.props);
       this.props.dispatch(getProductDetail(id)).then(()=>{
         if(!this.props.products.prodDetail){
           this.props.history.push('/');

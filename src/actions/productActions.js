@@ -16,14 +16,6 @@ import {
 
 import { PRODUCT_SERVER } from '../components/utils/misc';
 
-function flashMessage(message) {
-    
-    return {
-        type: "FLASH_MESSAGE",
-        payload: message
-    }
-}
-
 function fetchProductsSucceeded(data) {
     
     return {

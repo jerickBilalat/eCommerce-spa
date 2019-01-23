@@ -1,11 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const widgetCartCard = ({id, name, quantity, removeItem}) => {
   return (
     <ul className="cart-items">
       <li>
-        <a href="#" className="cart-item-title">{name}</a>
-        <span className="cart-item-amount"><a className="item-remove" onClick={() => removeItem(id)}><i className="fa fa-remove"></i></a> qty: {quantity} </span>
+        <Link className="cart-item-title" to={`/product_detail/${id}`} >{name}</Link>
+        <span className="cart-item-amount"><button style={{"margin":0, "border": "none"}} className="item-remove" onClick={() => removeItem(id)}><i className="fa fa-remove"></i></button> qty: {quantity} </span>
       </li>
     </ul>
   );
