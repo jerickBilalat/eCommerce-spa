@@ -84,9 +84,10 @@ export function syncCart() {
 
             if (inStockItem.quantity < cartItem.quantity) {
               localCart.quantitySync(cartItem.id, inStockItem.quantity)
-              flashMessageTexts.push(`${inStockItem.name} only has ${inStockItem.quantity} in stock`)
+              flashMessageTexts.push(`${inStockItem.name} has ${inStockItem.quantity} in stock`)
               updatedCart.push({id: inStockId, name, price, quantity, value: getItemValue(inStockItem.price, inStockItem.quantity)});
             } else {
+              dispatch(flashMessage(null));
               updatedCart.push({id: inStockId, name, price, quantity: cartItem.quantity, value: getItemValue(inStockItem.price, cartItem.quantity)});
             }
           } else {
