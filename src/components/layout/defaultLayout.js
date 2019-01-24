@@ -3,6 +3,7 @@ import "../../css/style.css"
 import "../../css/colors/blue.css"
 
 import Header from "../common/header";
+import Footer from "../common/footer";
 
 const DefaultLayout = (props) => {
   return (
@@ -11,6 +12,7 @@ const DefaultLayout = (props) => {
         <Header />
         {props.children}
       </div>
+      <Footer />
     </Fragment>
   );
 };
