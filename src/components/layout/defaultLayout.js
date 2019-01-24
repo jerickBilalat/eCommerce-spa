@@ -2,14 +2,14 @@ import React, {Fragment} from 'react';
 import "../../css/style.css"
 import "../../css/colors/blue.css"
 
-import Nav from "../common/navigation";
+import Header from "../common/header";
 
 const DefaultLayout = (props) => {
   return (
     <Fragment>
-      <Nav />
       <div className="container">
-          {props.children}
+        <Header />
+        {props.children}
       </div>
     </Fragment>
   );

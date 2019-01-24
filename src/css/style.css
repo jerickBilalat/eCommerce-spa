@@ -4712,6 +4712,7 @@ table.basic-table { margin-bottom: 0; }
 	display: block;
 	padding: 35px 38px;
 	position: relative;
+	margin: 40px 0px;
 }
 
 .info-content {
