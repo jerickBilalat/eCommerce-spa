@@ -3,8 +3,6 @@ import ProductCard from '../common/productCard';
 
 const ProductList = ({toShop, toShopSize, loadMoreProducts, limit}) => {
 
-  ;
-
   const renderCards = () => (
     toShop ? 
     toShop.map( item => (

@@ -7,7 +7,7 @@ const ProductDetail = ({_id, name, price, increaseQuantity}) => {
     <React.Fragment>
         <div className="col-md-12 extra-gutter-right">
           <div className="with-btn margin-bottom-20">
-            <Link to="/"><button className="button border medium">Back to shop</button></Link>
+            <Link to="/shop"><button className="button border medium">Back to shop</button></Link>
           </div>
         </div>
         <div className="col-md-9 col-sm-7 extra-gutter-right">

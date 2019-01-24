@@ -1506,7 +1506,7 @@ ul.footer-links {
 	transform: translateY(-50%);
 }
 
-#breadcrumbs ul { margin: 0; }
+#breadcrumbs ul { margin: 0; padding-right: 15px}
 
 #breadcrumbs ul li a {
 	-webkit-transition: all 0.2s ease-in-out;

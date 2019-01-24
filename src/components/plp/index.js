@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ProductList from "./productList";
 import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
+import TitleBar from "../common/titleBar";
 
 import { connect } from 'react-redux';
 import {getBrands, getWoods, fetchProducts} from '../../actions/productActions';
@@ -22,7 +23,6 @@ class ProductListPage extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.match)
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
 
@@ -59,9 +59,9 @@ class ProductListPage extends Component {
     return (
       <Layout >
         <div className="row">
-          <div className="col-sm-12">
-            <p className="with-border">Filter ></p>
-          </div>
+          <TitleBar title="Shop"/>>
+        </div>
+        <div className="row">
           <div className="col-md-9 col-sm-7">
             <div className="row extra-gutter-right">
               <ProductList toShop={products.toShop} toShopSize={products.toShopSize} limit={limit} loadMoreProducts={this.loadMoreProducts}/>

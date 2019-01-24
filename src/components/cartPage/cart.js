@@ -73,7 +73,7 @@ class Cart extends React.Component {
                     />
                   ))
                 ) : (
-                  <tr><td>No items in cart. Click <Link to="/" >Here</Link> to browse our products</td></tr>
+                  <tr><td>No items in cart. Click <Link to="/shop" >Here</Link> to browse our products</td></tr>
                 )}
               </tbody>
                   

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import currency from "currency.js";
 import { getSubTotal, getShippingTotal } from "../../reducers/cartReducer";
 import FlashMessage from "../common/flashMessage";
+import TitleBar from "../common/titleBar";
 
 import {
   syncCart,
@@ -111,6 +112,9 @@ class CartPage extends Component {
   render() {
     return (
       <Layout>
+        <div className="row">
+          <TitleBar title="Cart"/>
+        </div>
         {this.renderFlashMessage()}
         {this.renderContent()}
       </Layout>

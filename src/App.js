@@ -15,6 +15,7 @@ import { syncCart } from './actions/cartActions';
 import ProductListPage from "./components/plp";
 import ProductDetailPage from "./components/pdp";
 import CartPage from "./components/cartPage";
+import HomePage from "./components/home";
 
 class App extends React.Component {
 	componentDidMount() {
@@ -47,7 +48,8 @@ class App extends React.Component {
 			<Fragment>
 				<ToastContainer />
 				<Switch>
-					<Route path="/" exact 
+					<Route path="/" exact component={HomePage} />
+					<Route path="/shop" exact 
 						render={ props => (
 							<ProductListPage {...props} notify={this.notify}/>
 						)}

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
-import classnames from "classnames"
 
 class navigation extends Component {
 
@@ -10,6 +9,13 @@ class navigation extends Component {
     return cartItemsQuantity > 0 ? (<span className="cart-counter">{cartItemsQuantity}</span>) : null
   }
 
+  renderLinks() {
+    const navigationLinks =[
+      {name: "Home", path: "/"},
+      {name: "Shop", path: "/shop"}
+    ]
+    return navigationLinks.map( item => <li key={item.name}><Link className={(this.props.match.path === item.path && "current") || " "} to={item.path}>{item.name}</Link></li>)
+  }
 
   render() {
     return (
@@ -22,9 +28,8 @@ class navigation extends Component {
 
               <ul className="menu" id="responsive">
 
-                <li><Link className="current" to="/">Shop</Link></li>
-                <li className="search"><a href="#"><i className="fa fa-search"></i></a></li>
-                <li className="cart-icon">
+                {this.renderLinks()}
+                <li className="current cart-icon">
                   <Link to="/cart">
                     <i className="fa fa-shopping-cart"></i>
                     {this.renderQuantity()}
@@ -37,26 +42,6 @@ class navigation extends Component {
           </div>
         </div>
         <div className="clearfix"></div>
-
-
-        <div id="titlebar">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-
-                <h2>Shop</h2>
-                
-                <nav id="breadcrumbs">
-                  <ul>
-                    <li><a href="#">Home</a></li>
-                    <li>Shop</li>
-                  </ul>
-                </nav>
-
-              </div>
-            </div>
-          </div>
-        </div>
       </Fragment>
     );
   }
@@ -72,5 +57,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(navigation);
+export default withRouter(connect(mapStateToProps)(navigation));
 
