@@ -42,7 +42,7 @@ function fetchProductsStarted() {
     };
 }
 
-export function fetchProducts(skip, limit, filters) {
+export function fetchProducts(skip, limit, filters = [], prevState = []) {
     return dispatch => {
 
         dispatch(fetchProductsStarted());
@@ -50,8 +50,11 @@ export function fetchProducts(skip, limit, filters) {
         api
             .fetchProducts({skip, limit, filters})
             .then(resp => {
-                
-                dispatch(fetchProductsSucceeded(resp.data));
+                const data ={
+                    articles: [...prevState, ...resp.data.articles],
+                    size: resp.data.size
+                }
+                dispatch(fetchProductsSucceeded(data));
             })
             .catch(err => {
                 dispatch(fetchProductsFailed(err.message));

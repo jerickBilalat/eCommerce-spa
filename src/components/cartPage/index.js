@@ -5,7 +5,7 @@ import { getSubTotal, getShippingTotal } from "../../reducers/cartReducer";
 import FlashMessage from "../common/flashMessage";
 import TitleBar from "../common/titleBar";
 import { toast } from "react-toastify";
-import { clearCart } from "../../actions/cartActions";
+import { clearCart, flashMessage } from "../../actions/cartActions";
 
 import {
   syncCart,
@@ -51,6 +51,7 @@ class CartPage extends Component {
   submitOrderForm = event => {
     event.preventDefault();
     this.props.dispatch(clearCart());
+    this.props.dispatch(flashMessage(null));
     toast.success("Order submited");
     return this.setState({showOrderConfirm: false});
   }

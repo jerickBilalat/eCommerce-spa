@@ -5,7 +5,7 @@ import { MODIFY_CART_SUCCEEDED, FLASH_MESSAGE } from "./types";
 
 import { toast } from "react-toastify";
 
-function flashMessage(message) {
+export function flashMessage(message) {
   return {
     type: FLASH_MESSAGE,
     payload: message
