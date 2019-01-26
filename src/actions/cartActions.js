@@ -19,7 +19,10 @@ function modifyCartSucceeded(cart) {
   };
 }
 
-
+export function clearCart() {
+  localCart.clearCart();
+  return modifyCartSucceeded([]);
+}
 export function deleteCartItem(id) {
   localCart.deleteItem(id);
   toast.success("Item deleted");

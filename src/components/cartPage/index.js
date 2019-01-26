@@ -4,6 +4,8 @@ import currency from "currency.js";
 import { getSubTotal, getShippingTotal } from "../../reducers/cartReducer";
 import FlashMessage from "../common/flashMessage";
 import TitleBar from "../common/titleBar";
+import { toast } from "react-toastify";
+import { clearCart } from "../../actions/cartActions";
 
 import {
   syncCart,
@@ -23,7 +25,7 @@ class CartPage extends Component {
       name: "",
       email: "",
       phone: "",
-      message: "none"
+      message: ""
     },
     formErrors: {}
   };
@@ -37,11 +39,49 @@ class CartPage extends Component {
   submitForm = event => {
     event.preventDefault();
 
-    // if (!this.courseFormIsValid()) {
-    //   return;
-    // }
-    this.setState({ showOrderConfirm: true });
+    if (!this.courseFormIsValid()) {
+      return toast.error("Form is not valid");
+    }
+    if(this.state.formFields.message === "") {
+      this.setState({formFields: {message: "none"}})
+    }
+    return this.setState({ showOrderConfirm: true });
   };
+
+  submitOrderForm = event => {
+    event.preventDefault();
+    this.props.dispatch(clearCart());
+    toast.success("Order submited");
+    return this.setState({showOrderConfirm: false});
+  }
+
+  courseFormIsValid = () => {
+    let  isFormValid = true;
+    const errors = {};
+    const { formFields } = this.state;
+
+    const validEmailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if(formFields.name.length <= 0){
+      isFormValid = false;
+      errors.name = "Name is required";
+    }
+    
+    if(formFields.email.length <= 0){
+      isFormValid = false;
+      errors.email = "Email is required";
+    } else if(!validEmailPattern.test(String(formFields.email).toLowerCase())) {
+      isFormValid = false;
+      errors.email = "Enter a valid email";
+    }
+    
+    // validate phone
+    
+    
+    this.setState({formErrors: errors});
+    return isFormValid;
+  }
+
   componentDidMount() {
     this.props.dispatch(syncCart());
   }
@@ -76,6 +116,7 @@ class CartPage extends Component {
           shippingTotal={props.shippingTotal}
           total={props.total}
           doGoBackToCart={() => this.setState({ showOrderConfirm: false })}
+          submitOrderForm={this.submitOrderForm}
         />
       );
     return (

@@ -1,4 +1,6 @@
-
+function clearCart(){
+  localStorage.setItem("cart", "[]");
+}
 
 function decreaseItemQuantity(id, differential) {
   let cart = getCart(),
@@ -146,4 +148,4 @@ function updateLocalCart(newCart) {
   return localStorage.setItem("cart", JSON.stringify(newCart));
 }
 
-export default { decreaseItemQuantity, increaseItemQuantity, quantitySync, modifyItemQuantity, deleteItem, getItemQuantity, getCart };
+export default { decreaseItemQuantity, increaseItemQuantity, quantitySync, modifyItemQuantity, deleteItem, getItemQuantity, getCart, clearCart };

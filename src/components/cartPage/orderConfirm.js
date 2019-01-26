@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 class orderForm extends Component {
   render() {
 		const { name, email, phone, message } = this.props.formFields,
-					{subTotal, cartItems, shippingTotal, total} = this.props;
+					{subTotal, cartItems, shippingTotal, total, submitOrderForm, doGoBackToCart} = this.props;
     return (
 
       <Fragment>
@@ -98,10 +98,10 @@ class orderForm extends Component {
 
     <div className="row">
       <div className="col-xs-6">
-        <input type="submit" className="submit" id="submit" value="Back" onClick={() => this.props.doGoBackToCart(false)} />
+        <input type="submit" className="submit" id="submit" value="Back" onClick={() => doGoBackToCart(false)} />
       </div>
       <div className="col-xs-6">
-        <input type="submit" className="submit pull-right" id="submit" value="Submit Order" />
+        <input type="submit" className="submit pull-right" id="submit" onClick={e => submitOrderForm(e)} value="Submit Order" />
       </div>
     </div>
       
