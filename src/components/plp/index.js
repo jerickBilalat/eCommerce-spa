@@ -35,7 +35,7 @@ class ProductListPage extends Component {
 
   loadMoreProducts = () => {
     const newSkip = this.state.skip + this.state.limit;
-
+    debugger
     this.props
       .dispatch(
         fetchProducts(
@@ -45,10 +45,9 @@ class ProductListPage extends Component {
           this.props.products.toShop
         )
       )
-      .then(() => {
-        this.setState({
-          skip: newSkip
-        });
+      // to do: refator to use thunks instead of promises
+      this.setState({
+        skip: newSkip
       });
   }
 
@@ -59,7 +58,7 @@ class ProductListPage extends Component {
     return (
       <Layout >
         <div className="row">
-          <TitleBar title="Shop"/>>
+          <TitleBar title="Shop"/>
         </div>
         <div className="row">
           <div className="col-md-9 col-sm-7">

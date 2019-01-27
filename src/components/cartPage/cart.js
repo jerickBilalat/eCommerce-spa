@@ -1,31 +1,11 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import CartCard from "./cartCard";
+import CartCardMobile from "./cartCartMobile";
 import TextInput from "../common/textInput";
 
 
 class Cart extends React.Component {
-  // formIsValid() {
-  //   let formIsValid = true;
-  //   let errors = {};
-
-  //   if (this.state.course.title.length < 5) {
-  //     errors.title = 'Title must be at least 5 characters.';
-  //     formIsValid = false;
-  //   }
-
-  //   this.setState({errors: errors});
-  //   return formIsValid;
-  // }
-  // submitForm(event) {
-  //   event.preventDefault();
-
-  //   // if (!this.courseFormIsValid()) {
-  //   //   return;
-  //   // }
-
-  //   this.props.doRenderOrderConfirm();
-  // }
 
   render() {
 
@@ -47,7 +27,26 @@ class Cart extends React.Component {
       <React.Fragment>
         <div className="row">
           <div className="col-md-12">
-            <table className="cart-table responsive-table">
+            
+          <table className="stacktable small-only">
+            <tbody>
+              {cartItems.length ? (
+                cartItems.map(item => (
+                  <CartCardMobile 
+                    key={item.id} 
+                    {...item}
+                    deleteCartItem={deleteCartItem}
+                    increaseQuantity={increaseQuantity}
+                    decreaseQuantity={decreaseQuantity}
+                  />
+                ))
+              ) : (
+                <tr><td>No items in cart. Click <Link to="/shop" >Here</Link> to browse our products</td></tr>
+              )}
+              </tbody>
+            </table>
+
+            <table className="cart-table responsive-table stacktable large-only">
               <thead>
               <tr>
                 <th>Item</th>
