@@ -4,7 +4,6 @@ import Nav from "../common/navigation";
 const header = () => {
   return (
     <Fragment>
-
       <div className="row">
         <div className="header">
 

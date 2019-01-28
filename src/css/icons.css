@@ -909,6 +909,7 @@
   content: "\f104";
 }
 .fa-angle-right:before {
+  font-size: 3rem;
   content: "\f105";
 }
 .fa-angle-up:before {
@@ -1053,6 +1054,7 @@
   content: "\f137";
 }
 .fa-chevron-circle-right:before {
+  font-size: 3rem;
   content: "\f138";
 }
 .fa-chevron-circle-up:before {

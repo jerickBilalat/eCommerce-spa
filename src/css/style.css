@@ -579,8 +579,8 @@ li.dropdown ul li:hover a.with-ul:after {
 		content: "Menu";
 		text-transform: uppercase;
 		font-weight: 600;
-		font-size: 14px;
-		top: -1px;
+		font-size: 17px;
+		top: -4px;
 		position: relative;
 		left: 10px;
 	}
