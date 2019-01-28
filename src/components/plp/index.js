@@ -25,7 +25,6 @@ class ProductListPage extends Component {
   componentDidMount(){
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
-
     this.props.dispatch(fetchProducts(
         this.state.skip,
         this.state.limit,
@@ -35,7 +34,6 @@ class ProductListPage extends Component {
 
   loadMoreProducts = () => {
     const newSkip = this.state.skip + this.state.limit;
-    debugger
     this.props
       .dispatch(
         fetchProducts(
@@ -65,6 +63,15 @@ class ProductListPage extends Component {
             <div className="row extra-gutter-right">
               <ProductList toShop={products.toShop} toShopSize={products.toShopSize} limit={limit} loadMoreProducts={this.loadMoreProducts}/>
             </div>
+            {products.toShopSize > 0 && products.toShopSize >= limit ? (
+                <div className="row">
+                  <div className="col-md-12 extra-gutter-right text-center">
+                    <div className="with-btn margin-bottom-20">
+                      <button onClick={() => this.loadMoreProducts()} className="button border medium">More</button>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
           </div>
           <div className="col-md-3 col-sm-5">
             <Widgets />
