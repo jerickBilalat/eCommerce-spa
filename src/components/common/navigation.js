@@ -32,8 +32,19 @@ class navigation extends Component {
     left: false,
     bottom: false,
     right: false,
+    selectedIndex: 0,
   };
 
+  componentDidMount() {
+    let currnentPath = this.props.match.path;
+    let linkIndex = {
+      "/": 0,
+      "/shop": 1
+    };
+    let selectedIndex = linkIndex[currnentPath];
+    debugger
+    this.setState({selectedIndex})
+  }
   toggleDrawer = (side, open) => () => {
     this.setState({
       [side]: open,
@@ -52,16 +63,30 @@ class navigation extends Component {
     return navigationLinks.map( item => <li key={item.name}><Link className={(this.props.match.path === item.path && "current") || " "} to={item.path}>{item.name}</Link></li>)
   }
 
-  render() {
+  handleListItemClick = (event, index) => {
+    this.setState({ selectedIndex: index });
+  };
 
+  render() {
+    const navigationLinks =[
+      {name: "Home", path: "/"},
+      {name: "Shop", path: "/shop"}
+    ]
     const { classes } = this.props;
 
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
+          {navigationLinks.map((link, index) => (
+            <ListItem 
+              button 
+              key={link.name} 
+              component={Link} 
+              to={link.path}
+              selected={this.state.selectedIndex === index}
+              onClick={event => this.handleListItemClick(event, index)}
+            >
+              <ListItemText primary={link.name} />
             </ListItem>
           ))}
         </List>
@@ -89,8 +114,7 @@ class navigation extends Component {
         </List>
       </div>
     );
-
-    
+    console.log(this.state.selectedIndex);
     return (
       <Fragment>
         <div className="container">
