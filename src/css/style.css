@@ -5643,7 +5643,19 @@ table.basic-table { margin-bottom: 0; }
 
 /* All Mobile Sizes (devices and browser) */
 @media (max-width: 767px) {
+	.info-content {
+    padding-right: 0;
+  }
 
+  .info-banner a.button {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    margin: 30px 0 0 40px;
+    transform: translateY(0);
+    text-align: center;
+    width: 100%;
+  }
 	h3.headline { margin: 48px 0 35px 0; }
 
 	#googlemaps { padding-bottom: 65%; }

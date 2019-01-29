@@ -42,7 +42,6 @@ class navigation extends Component {
       "/shop": 1
     };
     let selectedIndex = linkIndex[currnentPath];
-    debugger
     this.setState({selectedIndex})
   }
   toggleDrawer = (side, open) => () => {
