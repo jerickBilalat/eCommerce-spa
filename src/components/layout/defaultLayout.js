@@ -2,7 +2,8 @@ import React, {Fragment} from 'react';
 import "../../css/style.css"
 import "../../css/colors/blue.css"
 
-import Header from "../common/header";
+// import Header from "../common/header";
+import Header from "../common/mnRecHeader";
 import Footer from "../common/footer";
 
 const DefaultLayout = (props) => {
