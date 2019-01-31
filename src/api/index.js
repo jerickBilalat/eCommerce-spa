@@ -1,7 +1,7 @@
 import axios from "axios";
 import localCart from "../components/utils/localCart";
 
-const API_BASE_URL = "http://localhost:3002";
+const API_BASE_URL = "https://whispering-hamlet-50633.herokuapp.com";
 
 const client = axios.create({
   baseURL: API_BASE_URL
