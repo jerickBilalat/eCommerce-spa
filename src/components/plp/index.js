@@ -12,7 +12,7 @@ class ProductListPage extends Component {
 
   state = {
     grid:'',
-    limit:6,
+    limit:3,
     skip:0,
     filters:{
       brand:[],
@@ -52,7 +52,6 @@ class ProductListPage extends Component {
   render() {
     const {products} = this.props;
     const {limit} = this.state;
-    
     return (
       <Layout >
         <div className="row">
@@ -61,7 +60,7 @@ class ProductListPage extends Component {
         <div className="row">
           <div className="col-md-9 col-sm-7">
             <div className="row extra-gutter-right">
-              <ProductList toShop={products.toShop} toShopSize={products.toShopSize} limit={limit} loadMoreProducts={this.loadMoreProducts}/>
+              {products.toShop.length ? (<ProductList toShop={products.toShop} toShopSize={products.toShopSize} limit={limit} loadMoreProducts={this.loadMoreProducts}/>) : <h3>Loading ...</h3> }
             </div>
             {products.toShopSize > 0 && products.toShopSize >= limit ? (
                 <div className="row">

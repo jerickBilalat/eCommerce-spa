@@ -25,7 +25,7 @@ export function clearCart() {
 }
 export function deleteCartItem(id) {
   localCart.deleteItem(id);
-  toast.success("Item deleted");
+  toast.success("Item removed from cart");
   return {
     type: "DELETE_ITEM",
     payload: id
@@ -39,7 +39,12 @@ export function increaseCartItemQuantity(productDetails, differential) {
   let updatedCartQuantity = localCart.increaseItemQuantity(id, differential);
   let cartItemValue = getItemValue(price, updatedCartQuantity);
   let updatedItem = { id, name, price, quantity: updatedCartQuantity, value: cartItemValue }
-  toast.success("Item quantity increased");
+  if(updatedCartQuantity > 1) {
+    toast.success("Item quantity increased");
+  }else {
+    toast.success("Item added to cart");
+  }
+  
     return {
       type: "MODIFY_ITEM_QNTY",
       payload: updatedItem

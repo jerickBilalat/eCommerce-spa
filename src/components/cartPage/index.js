@@ -6,6 +6,8 @@ import FlashMessage from "../common/flashMessage";
 import TitleBar from "../common/titleBar";
 import { toast } from "react-toastify";
 import { clearCart, flashMessage } from "../../actions/cartActions";
+import { fetchProducts } from "../../actions/productActions";
+
 
 import {
   syncCart,
@@ -85,6 +87,7 @@ class CartPage extends Component {
 
   componentDidMount() {
     this.props.dispatch(syncCart());
+    this.props.dispatch(fetchProducts(0, 1000, [], []));
   }
 
   deleteCartItem = id => {
@@ -107,7 +110,7 @@ class CartPage extends Component {
       increaseQuantity,
       decreaseQuantity
     } = this;
-
+  
     if (state.showOrderConfirm)
       return (
         <OrderConfirm
@@ -127,6 +130,7 @@ class CartPage extends Component {
         formErrors={this.state.formErrors}
         submitForm={this.submitForm}
         cartItems={props.cart.cartItems}
+        products={props.toShop}
         subTotal={props.subTotal}
         shippingTotal={props.shippingTotal}
         total={props.total}
@@ -175,7 +179,8 @@ function mapStateToProps(state) {
     flashMessage: state.cart.flashMessage,
     subTotal,
     shippingTotal,
-    total
+    total,
+    toShop: state.products.toShop
   };
 }
 

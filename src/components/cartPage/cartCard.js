@@ -1,10 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const cartCard = ({id, name, price, quantity, value, deleteCartItem, increaseQuantity, decreaseQuantity}) => {
+const cartCard = ({id, name, price, quantity, value, products, deleteCartItem, increaseQuantity, decreaseQuantity}) => {
+  const cartItem = products && products.length 
+        ?  products.map(item => ({id: item._id, images: item.images}))
+            .filter( item => item.id === id)[0]
+        : null;
+  const images = cartItem && cartItem.images;
+  const imageLink = images && images.length ? images[2] : "images/shop-widget-02.jpg";
   return (
     <tr>
-      <td><img src="images/shop-widget-02.jpg" alt=""/></td>
+      <td><img src={`${imageLink}`} alt=""/></td>
       <td className="cart-title"><Link to={`/product_detail/${id}`} >{name}</Link></td>
       <td>${price}</td>
       <td>

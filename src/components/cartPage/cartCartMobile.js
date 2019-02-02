@@ -1,7 +1,13 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const cartCardMobile = ({id, name, price, quantity, value, deleteCartItem, increaseQuantity, decreaseQuantity}) => {
+const cartCardMobile = ({id, name, price, quantity, value, products, deleteCartItem, increaseQuantity, decreaseQuantity}) => {
+  const cartItem = products && products.length 
+        ?  products.map(item => ({id: item._id, images: item.images}))
+            .filter( item => item.id === id)[0]
+        : null;
+  const images = cartItem && cartItem.images;
+  const imageLink = images && images.length ? images[2] : "images/shop-widget-02.jpg";
   return (
     <React.Fragment>
       <tr className="st-space">
@@ -11,7 +17,7 @@ const cartCardMobile = ({id, name, price, quantity, value, deleteCartItem, incre
       <tr className="st-new-item">
         <td className="st-key"></td>
         <td className="st-val st-head-row">
-          <img src="images/shop-widget-02.jpg" alt="" />
+          <img src={`${imageLink}`} alt="" />
         </td>
       </tr>
       <tr>

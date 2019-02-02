@@ -113,7 +113,6 @@ class navigation extends Component {
         </List>
       </div>
     );
-    console.log(this.state.selectedIndex);
     return (
       <Fragment>
         <div className="container">

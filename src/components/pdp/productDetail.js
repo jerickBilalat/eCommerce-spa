@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const ProductDetail = ({_id, name, price, increaseQuantity}) => {
-  const prodDetail = {id: _id, name, price};
+const ProductDetail = ({_id, name, price, images, increaseQuantity}) => {
+  const prodDetail = {id: _id, name, price, images};
+  const imageLink = images && images.length ? images[0] : "../images/shop-09a.jpg";
   return (
     <React.Fragment>
         <div className="col-md-12 extra-gutter-right">
@@ -15,7 +16,9 @@ const ProductDetail = ({_id, name, price, increaseQuantity}) => {
             <div className="col-md-6">
               <div className="simple-slider shop">
                 <ul className="slides">
-                  <li><img src="images/shop-09a.jpg" alt="" /></li>
+                  <li>
+                    {images && images.length ? (<img src={`${imageLink}`} alt="" />) : <p>Loading imageLink...</p>}
+                  </li>
                 </ul>
               </div>
             </div>

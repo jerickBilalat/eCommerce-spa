@@ -6,15 +6,19 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import promiseMiddleware from 'redux-promise';
 import thunk from 'redux-thunk';
+import {fetchProducts} from './actions/productActions';
+import ScrollToTop from './components/common/scrollToTop';
 
 import Reducer from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, thunk)(createStore);
-
+const store = createStoreWithMiddleware(Reducer , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(Reducer , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
+  <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
     </BrowserRouter>
   </Provider>
 , document.getElementById('root'));

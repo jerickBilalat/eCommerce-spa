@@ -11,6 +11,7 @@ class Cart extends React.Component {
 
     let {
       cartItems,
+      products,
       formFields,
       updateFormState,
       formErrors,
@@ -35,6 +36,7 @@ class Cart extends React.Component {
                   <CartCardMobile 
                     key={item.id} 
                     {...item}
+                    products={products}
                     deleteCartItem={deleteCartItem}
                     increaseQuantity={increaseQuantity}
                     decreaseQuantity={decreaseQuantity}
@@ -66,6 +68,7 @@ class Cart extends React.Component {
                     <CartCard 
                       key={item.id} 
                       {...item}
+                      products={products}
                       deleteCartItem={deleteCartItem}
                       increaseQuantity={increaseQuantity}
                       decreaseQuantity={decreaseQuantity}
