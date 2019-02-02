@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import Nav from "../common/mnRecNavigation";
+import {CLIENT_BASE_URL as baseURL} from "../../constants";
 
 const header = () => {
   return (
@@ -9,7 +10,7 @@ const header = () => {
 
           <div className="col-md-3 col-sm-12">
             <div id="logo">
-              <a href="http://minnesotarec.surge.sh/index.html"><img src="images/mnreclogo.png" alt=""/></a>
+              <a href="http://minnesotarec.surge.sh/index.html"><img src={`${baseURL}/images/mnreclogo.png`} alt=""/></a>
             </div>
           </div>
 

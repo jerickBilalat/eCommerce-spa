@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {CLIENT_BASE_URL as baseURL} from "../../constants";
 
-const ProductDetail = ({_id, name, price, images, increaseQuantity}) => {
+const ProductDetail = ({prodDetail: {_id, name, price, images}, increaseQuantity}) => {
   const prodDetail = {id: _id, name, price, images};
-  const imageLink = images && images.length ? images[0] : "../images/shop-09a.jpg";
+  const imageLink = images && images.length ? images[0] : `${baseURL}/images/shop-09a.jpg`;
   return (
     <React.Fragment>
         <div className="col-md-12 extra-gutter-right">
@@ -17,7 +18,7 @@ const ProductDetail = ({_id, name, price, images, increaseQuantity}) => {
               <div className="simple-slider shop">
                 <ul className="slides">
                   <li>
-                    {images && images.length ? (<img src={`${imageLink}`} alt="" />) : <p>Loading imageLink...</p>}
+                    {images && images.length ? (<img src={`${imageLink}`} alt="" />) : (<img src={`${baseURL}/images/shop-09a.jpg`} alt="" />)}
                   </li>
                 </ul>
               </div>

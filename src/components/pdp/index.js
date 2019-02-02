@@ -5,24 +5,25 @@ import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
 import { getProductDetail, clearProductDetail } from '../../actions/productActions';
 import { increaseCartItemQuantity } from '../../actions/cartActions';
+import { toast } from "react-toastify";
 
 
 class productDetailPage extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    console.log(this.props);
       this.props.dispatch(getProductDetail(id)).then(()=>{
         if(!this.props.products.prodDetail){
           // to do: include notification
           this.props.history.push('/');
         }
+        console.log(this.props.products.prodDetail);
+        toast.success("prodDetails loaded");
       })
   }
 
-  doGoToProductDetail = (path) => {
+  componentWillUnmount() {
     this.props.dispatch(clearProductDetail());
-    this.props.history.push(`${path}`);
   }
 
   doIncreaseCartItemQuantity = (prodDetail, differential) => {
@@ -31,11 +32,12 @@ class productDetailPage extends Component {
 
   render() {
     const {prodDetail} = this.props.products;
+    console.log(prodDetail);
     return (
       <Layout>
         <div className="row">
           {prodDetail ? 
-            <ProductDetail {...prodDetail} increaseQuantity={this.doIncreaseCartItemQuantity}/>
+            <ProductDetail prodDetail={prodDetail} increaseQuantity={this.doIncreaseCartItemQuantity}/>
             : <h3>Loading ...</h3>
           }
           <div className="col-md-3 col-sm-5">

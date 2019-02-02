@@ -62,6 +62,13 @@ export function fetchProducts(skip, limit, filters = [], prevState = []) {
     };
 }
 
+export function clearProductDetail(){
+    return {
+        type: CLEAR_PRODUCT_DETAIL,
+        payload:''
+    }
+}
+
 
 ////////////////////
 // OLD CODE
@@ -82,12 +89,7 @@ export function getProductDetail(id){
 }
 
 
-export function clearProductDetail(){
-    return {
-        type: CLEAR_PRODUCT_DETAIL,
-        payload:''
-    }
-}
+
 
 
 export function getProductsBySell(){
