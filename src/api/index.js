@@ -1,14 +1,14 @@
 import axios from "axios";
 import localCart from "../components/utils/localCart";
 
-const API_BASE_URL = "https://whispering-hamlet-50633.herokuapp.com";
+const API_BASE_URL = "https://minnesotarec.herokuapp.com/";
 
 const client = axios.create({
   baseURL: API_BASE_URL
 })
 
 export function fetchProducts(queryStatements) {
-  return client.post('/api/product/shop', queryStatements)
+  return client.post('api/product/shop', queryStatements)
 }
 
 export function fetchSingleFilteredProduct(id){
