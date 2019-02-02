@@ -122,7 +122,7 @@ class navigation extends Component {
         <Link
           className={(this.props.match.path === item.path && "current") || " "}
           to={item.path}
-          onClikc={this.closeAllSubMenus}
+          onClick={this.closeAllSubMenus}
         >
           {item.name}
         </Link>
@@ -338,7 +338,7 @@ class navigation extends Component {
                     <a href={`${staticSiteBaseURL}/contact.html`}>Contact</a>
                   </li>
                   <li className="current cart-icon">
-                    <Link to="/cart" onClikc={this.closeAllSubMenus}>
+                    <Link to="/cart" onClick={this.closeAllSubMenus}>
                       <i className="fa fa-shopping-cart" />
                       {this.renderQuantity()}
                     </Link>
