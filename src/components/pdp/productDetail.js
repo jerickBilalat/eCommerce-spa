@@ -29,7 +29,7 @@ const ProductDetail = ({prodDetail: {_id, name, price, images}, increaseQuantity
               <div className="product-details">
 
                 <h4>{name}</h4>
-                <span className="price"><del>$129</del> <mark>{price}</mark></span>
+                <span className="price"><mark>${price}</mark></span>
                 <span className="divider"></span>
                 <p>Etiam lobortis dolor eros sed lorem sodales imperdiet dapibus. Maecenas faucibus urna sed turpis lacinia consectetur. Mauris dolor bibendum nibh consectetuer.<br/></p>
 

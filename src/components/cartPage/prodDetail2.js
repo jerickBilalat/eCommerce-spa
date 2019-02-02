@@ -18,8 +18,6 @@ class ProdDetail2 extends React.Component {
           // to do: include notification
           this.props.history.push('/');
         }
-        console.log(this.props.products.prodDetail);
-        toast.success("prodDetails loaded");
       })
   }
 	render() {

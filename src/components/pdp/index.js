@@ -17,8 +17,6 @@ class productDetailPage extends Component {
           // to do: include notification
           this.props.history.push('/');
         }
-        console.log(this.props.products.prodDetail);
-        toast.success("prodDetails loaded");
       })
   }
 
@@ -32,7 +30,6 @@ class productDetailPage extends Component {
 
   render() {
     const {prodDetail} = this.props.products;
-    console.log(prodDetail);
     return (
       <Layout>
         <div className="row">
