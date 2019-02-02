@@ -14,7 +14,7 @@ import {
     FETCH_PRODUCTS_STARTED
 } from './types';
 
-import { PRODUCT_SERVER } from '../components/utils/misc';
+import { API_SERVER_BASE_URL } from '../constants';
 
 function fetchProductsSucceeded(data) {
     
@@ -76,7 +76,7 @@ export function clearProductDetail(){
 
 export function getProductDetail(id){
 
-    const request = axios.get(`${PRODUCT_SERVER}/articles_by_id?id=${id}&type=single`)
+    const request = axios.get(`${API_SERVER_BASE_URL}/api/product/articles_by_id?id=${id}&type=single`)
     .then(response=>{
         return response.data[0]
     });
@@ -94,7 +94,7 @@ export function getProductDetail(id){
 
 export function getProductsBySell(){
     //?sortBy=sold&order=desc&limit=100
-    const request = axios.get(`${PRODUCT_SERVER}/articles?sortBy=sold&order=desc&limit=4`)
+    const request = axios.get(`${API_SERVER_BASE_URL}/api/product/articles?sortBy=sold&order=desc&limit=4`)
                     .then(response => response.data);
 
     return {
@@ -105,7 +105,7 @@ export function getProductsBySell(){
 }
 
 export function getProductsByArrival(){
-    const request = axios.get(`${PRODUCT_SERVER}/articles?sortBy=createdAt&order=desc&limit=4`)
+    const request = axios.get(`${API_SERVER_BASE_URL}/api/product/articles?sortBy=createdAt&order=desc&limit=4`)
     .then(response => response.data);
 
     return {
@@ -121,7 +121,7 @@ export function getProductsToShop(skip, limit,filters =[], previousState = []){
         filters
     }
 
-    const request = axios.post(`${PRODUCT_SERVER}/shop`,data)
+    const request = axios.post(`${API_SERVER_BASE_URL}/api/product/shop`,data)
                 .then(response => {
                     let newState = [
                         ...previousState,
@@ -157,7 +157,7 @@ export function clearProduct(){
 
 export function getBrands(){
 
-    const request = axios.get(`${PRODUCT_SERVER}/brands`)
+    const request = axios.get(`${API_SERVER_BASE_URL}/api/product/brands`)
                 .then(response => response.data );
 
     return {
@@ -168,7 +168,7 @@ export function getBrands(){
 }
 
 export function getWoods(){
-    const request = axios.get(`${PRODUCT_SERVER}/woods`)
+    const request = axios.get(`${API_SERVER_BASE_URL}/api/product/woods`)
     .then(response => response.data );
 
     return {
