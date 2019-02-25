@@ -48,9 +48,7 @@ class App extends React.Component {
 			<Fragment>
 				<ToastContainer />
 				<Switch>
-					<Route path="/" exact render={ props => (
-							<ProductListPage {...props} notify={this.notify}/>
-						)} />
+					<Route path="/" exact component={HomePage} />
 					<Route path="/shop" exact 
 						render={ props => (
 							<ProductListPage {...props} notify={this.notify}/>

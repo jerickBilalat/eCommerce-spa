@@ -1,30 +1,32 @@
-import React, { Component, Fragment } from 'react';
-import {Link, withRouter} from "react-router-dom";
+import React, { Component, Fragment } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
-
-const InboxIcon = () => <i>Icon</i>;
-const MailIcon = () => <i>Mail</i>;
+import { withStyles } from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 
-const styles = {
+const styles = theme => ({
   list: {
-    width: 250,
+    width: 250
   },
   fullList: {
-    width: 'auto',
+    width: "auto"
   },
-};
+  nested: {
+    paddingLeft: theme.spacing.unit * 4
+  },
+  negatePadding: {
+    paddingLeft: "-56px"
+  }
+});
+
+const navigationLinks = [{name: "Home", path:"/"}, { name: "Shop", path: "/shop" }];
+const mobileNavigationLinks = [{name: "Home", path:"/"}, { name: "Shop", path: "/shop" }, { name: "Cart", path: "/cart" }];
+
 
 class navigation extends Component {
   state = {
@@ -32,7 +34,7 @@ class navigation extends Component {
     left: false,
     bottom: false,
     right: false,
-    selectedIndex: 0,
+    selectedIndex: 0
   };
 
   componentDidMount() {
@@ -42,45 +44,49 @@ class navigation extends Component {
       "/shop": 1
     };
     let selectedIndex = linkIndex[currnentPath];
-    this.setState({selectedIndex})
+    this.setState({ selectedIndex });
   }
   toggleDrawer = (side, open) => () => {
     this.setState({
-      [side]: open,
+      [side]: open
     });
   };
-  renderQuantity() {
-    const {cartItemsQuantity} = this.props;
-    return cartItemsQuantity > 0 ? (<span className="cart-counter">{cartItemsQuantity}</span>) : null
-  }
+  renderQuantity = () => {
+    const { cartItemsQuantity } = this.props;
+    return cartItemsQuantity > 0 ? (
+      <span className="cart-counter">{cartItemsQuantity}</span>
+    ) : null;
+  };
 
-  renderLinks() {
-    const navigationLinks =[
-      {name: "Home", path: "/"},
-      {name: "Shop", path: "/shop"}
-    ]
-    return navigationLinks.map( item => <li key={item.name}><Link className={(this.props.match.path === item.path && "current") || " "} to={item.path}>{item.name}</Link></li>)
-  }
+  renderAppLinks = () => {
+    return navigationLinks.map(item => (
+      <li key={item.name}>
+        <Link
+          className={(this.props.match.path === item.path && "current") || " "}
+          to={item.path}
+        >
+          {item.name}
+        </Link>
+      </li>
+    ));
+  };
 
   handleListItemClick = (event, index) => {
     this.setState({ selectedIndex: index });
+    this.toggleDrawer("left", false);
   };
 
   render() {
-    const navigationLinks =[
-      {name: "Home", path: "/"},
-      {name: "Shop", path: "/shop"}
-    ]
     const { classes } = this.props;
 
-    const sideList = (
+    const mobileDrawerNavList = (
       <div className={classes.list}>
         <List>
-          {navigationLinks.map((link, index) => (
-            <ListItem 
-              button 
-              key={link.name} 
-              component={Link} 
+          {mobileNavigationLinks.map((link, index) => (
+            <ListItem
+              button
+              key={link.name}
+              component={Link}
               to={link.path}
               selected={this.state.selectedIndex === index}
               onClick={event => this.handleListItemClick(event, index)}
@@ -92,82 +98,57 @@ class navigation extends Component {
       </div>
     );
 
-    const fullList = (
-      <div className={classes.fullList}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
     return (
       <Fragment>
         <div className="container">
           <div>
-            <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-              <div
-                tabIndex={0}
-                role="button"
-                onClick={this.toggleDrawer('left', false)}
-                onKeyDown={this.toggleDrawer('left', false)}
-              >
-                {sideList}
+            <Drawer
+              open={this.state.left}
+              onClose={this.toggleDrawer("left", false)}
+            >
+              <div tabIndex={0} role="button">
+                {mobileDrawerNavList}
               </div>
             </Drawer>
-            
           </div>
           <div className="row">
             <div className="col-md-12">
-              
               <div className="menu-responsive">
-                <i className="fa fa-chevron-circle-right menu-trigger" onClick={this.toggleDrawer('left', true)}></i>
+                <i
+                  className="fa fa-chevron-circle-right menu-trigger"
+                  onClick={this.toggleDrawer("left", true)}
+                />
               </div>
-
               <nav id="navigation">
-
                 <ul className="menu" id="responsive">
-
-                  {this.renderLinks()}
+                  {this.renderAppLinks()}
                   <li className="current cart-icon">
                     <Link to="/cart">
-                      <i className="fa fa-shopping-cart"></i>
+                      <i className="fa fa-shopping-cart" />
                       {this.renderQuantity()}
                     </Link>
                   </li>
-
                 </ul>
               </nav>
             </div>
           </div>
         </div>
-        <div className="clearfix"></div>
+        <div className="clearfix" />
       </Fragment>
     );
   }
 }
 
-const getCartItemCount = (state) => {
+const getCartItemCount = state => {
   return state.cart.cartItems.length;
-}
+};
 
 function mapStateToProps(state) {
   return {
     cartItemsQuantity: getCartItemCount(state)
-  }
+  };
 }
 
-export default withRouter(withStyles(styles)(connect(mapStateToProps)(navigation)));
-
+export default withRouter(
+  withStyles(styles)(connect(mapStateToProps)(navigation))
+);

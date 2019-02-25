@@ -3,7 +3,7 @@ import "../../css/style.css"
 import "../../css/colors/blue.css"
 
 // import Header from "../common/header";
-import Header from "../common/mnRecHeader";
+import Header from "../common/header";
 import Footer from "../common/footer";
 
 const DefaultLayout = (props) => {
