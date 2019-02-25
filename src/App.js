@@ -3,9 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-// minified version is also included
-// import 'react-toastify/dist/ReactToastify.min.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import './css/style.css';
 import './css/colors/blue.css'
@@ -16,7 +14,6 @@ import ProductListPage from "./components/plp";
 import ProductDetailPage from "./components/pdp";
 import CartPage from "./components/cartPage";
 import HomePage from "./components/home";
-import ProdDetail2 from "./components/cartPage/prodDetail2";
 class App extends React.Component {
 	componentDidMount() {
 		this.props.dispatch(syncCart());
@@ -57,11 +54,6 @@ class App extends React.Component {
 					<Route path="/product_detail/:id" exact 
 						render={ props => (
 							<ProductDetailPage {...props} notify={this.notify}/>
-						)}
-					/>
-					<Route path="/product_detail2/:id" exact 
-						render={ props => (
-							<ProdDetail2 {...props} notify={this.notify}/>
 						)}
 					/>
 					<Route path="/cart" exact 

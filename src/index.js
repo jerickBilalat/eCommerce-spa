@@ -6,7 +6,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import promiseMiddleware from 'redux-promise';
 import thunk from 'redux-thunk';
-import {fetchProducts} from './actions/productActions';
 import ScrollToTop from './components/common/scrollToTop';
 
 import Reducer from './reducers';

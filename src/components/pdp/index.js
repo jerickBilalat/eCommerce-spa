@@ -5,7 +5,6 @@ import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
 import { getProductDetail, clearProductDetail } from '../../actions/productActions';
 import { increaseCartItemQuantity } from '../../actions/cartActions';
-import { toast } from "react-toastify";
 
 
 class productDetailPage extends Component {
