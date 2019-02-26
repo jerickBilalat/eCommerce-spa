@@ -9,11 +9,6 @@ const ProductDetail = ({prodDetail: {_id, name, price, images}, increaseQuantity
   return (
     <React.Fragment>
         <ScrollTo x={0} y={140} />
-        <div className="col-md-12 extra-gutter-right">
-          <div className="with-btn margin-bottom-20">
-            <Link to="/shop"><button className="button border medium">Back to shop</button></Link>
-          </div>
-        </div>
         <div className="col-md-9 col-sm-7 extra-gutter-right">
           <div className="row">
             <div className="col-md-6">
