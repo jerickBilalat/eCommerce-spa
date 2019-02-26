@@ -1,3 +1,7 @@
+/* NOTE: localStorage Browser Compatibility
+localStorage my not be present in all browsers. Go to https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Local_storage for a polyfill or google other alternatives.
+*/
+
 function clearCart(){
   localStorage.setItem("cart", "[]");
 }
