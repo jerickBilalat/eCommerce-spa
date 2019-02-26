@@ -12,8 +12,9 @@ const TitleBar = props => {
             
             <nav id="breadcrumbs">
               <ul>
-                <li><a href="http://minnesotarec.surge.sh/index.html">Home</a></li>
-                <li>{props.title}</li>
+                <li><Link to={"/"}>Home</Link></li>
+                <li><Link to={"/shop"}>Shop</Link></li>
+                {props.title && <li>{props.title}</li>}
               </ul>
             </nav>
 

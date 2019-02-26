@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import currency from "currency.js";
 import { getSubTotal, getShippingTotal } from "../../reducers/cartReducer";
 import FlashMessage from "../common/flashMessage";
-import TitleBar from "../common/titleBar";
 import { toast } from "react-toastify";
 import { clearCart, flashMessage } from "../../actions/cartActions";
 import { fetchProducts } from "../../actions/productActions";
+import { Link } from "react-router-dom";
 
 
 import {
@@ -159,7 +159,25 @@ class CartPage extends Component {
     return (
       <Layout>
         <div className="row">
-          <TitleBar title="Cart"/>
+          <div id="titlebar">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+
+                  <h2>Cart</h2>
+                  
+                  <nav id="breadcrumbs">
+                    <ul>
+                      <li><Link to={"/"}>Home</Link></li>
+                      <li><Link to={"/shop"}>Shop</Link></li>
+                      <li>Cart</li>
+                    </ul>
+                  </nav>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         {this.renderFlashMessage()}
         {this.renderContent()}

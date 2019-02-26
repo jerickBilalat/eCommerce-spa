@@ -5,6 +5,7 @@ import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
 import { getProductDetail, clearProductDetail } from '../../actions/productActions';
 import { increaseCartItemQuantity } from '../../actions/cartActions';
+import { Link } from "react-router-dom";
 
 
 class productDetailPage extends Component {
@@ -31,6 +32,32 @@ class productDetailPage extends Component {
     const {prodDetail} = this.props.products;
     return (
       <Layout>
+        {prodDetail && 
+          (
+            <div className="row">
+              <div id="titlebar">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-12">
+
+                      <h2>{prodDetail.name}</h2>
+                      
+                      <nav id="breadcrumbs">
+                        <ul>
+                          <li><Link to={"/"}>Home</Link></li>
+                          <li><Link to={"/shop"}>Shop</Link></li>
+                          <li>{prodDetail.name}</li>
+                        </ul>
+                      </nav>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        }
+        
         <div className="row">
           {prodDetail ? 
             <ProductDetail prodDetail={prodDetail} increaseQuantity={this.doIncreaseCartItemQuantity}/>

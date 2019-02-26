@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProductList from "./productList";
 import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
-import TitleBar from "../common/titleBar";
+import { Link} from "react-router-dom";
 
 import { connect } from 'react-redux';
 import {getBrands, getWoods, fetchProducts} from '../../actions/productActions';
@@ -55,7 +55,24 @@ class ProductListPage extends Component {
     return (
       <Layout >
         <div className="row">
-          <TitleBar title="Shop"/>
+          <div id="titlebar">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+
+                  <h2>Shop</h2>
+                  
+                  <nav id="breadcrumbs">
+                    <ul>
+                      <li><Link to={"/"}>Home</Link></li>
+                      <li>Shop</li>
+                    </ul>
+                  </nav>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="row">
           <div className="col-md-9 col-sm-7">
