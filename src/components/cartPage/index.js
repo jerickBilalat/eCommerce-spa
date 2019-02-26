@@ -32,7 +32,9 @@ class CartPage extends Component {
     formErrors: {}
   };
 
-  updateFormState = event => {
+  updateFormState = event => {  
+    if(!event.isTrusted) return;
+    
     const field = event.target.name;
     let formFields = { ...this.state.formFields };
     formFields[field] = event.target.value;
@@ -44,8 +46,10 @@ class CartPage extends Component {
     if (!this.courseFormIsValid()) {
       return toast.error("Form is not valid");
     }
+    console.log(this.state.formFields);
     if(this.state.formFields.message === "") {
-      this.setState({formFields: {message: "none"}})
+      const formFields = { ...this.state.formFields};
+      this.setState({formFields});
     }
     return this.setState({ showOrderConfirm: true });
   };

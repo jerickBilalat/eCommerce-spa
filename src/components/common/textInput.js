@@ -8,6 +8,7 @@ const TextInput = ({name, onChange, placeholder, value, error}) => {
         <Fragment>
           {error && <div style={style}>{error}</div>}
           <input
+            autoComplete="off"
             type="text"
             name={name}
             placeholder={placeholder}

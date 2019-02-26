@@ -30,7 +30,7 @@ class orderForm extends Component {
             <div className="col-xs-6">
               <address>
                 <strong>Message:</strong><br/>
-                <p>{message}</p>
+                <p>{!message && "none"}</p>
               </address>
             </div>
             

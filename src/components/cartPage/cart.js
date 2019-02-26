@@ -125,7 +125,7 @@ class Cart extends React.Component {
     
               <div id="contact-message"></div> 
     
-                <form>
+                <form noValidate autoComplete="off">
                   <div className="row">
                     <div className="col-md-6">
                       <div>
