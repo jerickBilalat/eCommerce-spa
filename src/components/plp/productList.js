@@ -6,7 +6,7 @@ const ProductList = ({toShop, loadMoreProducts}) => {
   const renderCards = () => (
     toShop ? 
     toShop.map( item => (
-        <ProductCard key={item._id} productItem={{...item}} loadMoreProducts={loadMoreProducts} />
+        <ProductCard key={`${item._id}${Math.random()}`} productItem={{...item}} loadMoreProducts={loadMoreProducts} />
       ))
     : null
   )
