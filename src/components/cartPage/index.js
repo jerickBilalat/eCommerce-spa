@@ -58,7 +58,8 @@ class CartPage extends Component {
     this.props.dispatch(clearCart());
     this.props.dispatch(flashMessage(null));
     toast.success("Order submited");
-    return this.setState({showOrderConfirm: false});
+    this.setState({showOrderConfirm: false});
+    this.props.history.push('/shop');
   }
 
   courseFormIsValid = () => {
