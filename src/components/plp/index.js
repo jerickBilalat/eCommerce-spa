@@ -77,7 +77,7 @@ class ProductListPage extends Component {
         <div className="row">
           <div className="col-md-9 col-sm-7">
             <div className="row extra-gutter-right">
-              {products.toShop.length ? (<ProductList toShop={products.toShop} toShopSize={products.toShopSize} limit={limit} loadMoreProducts={this.loadMoreProducts}/>) : <h3>Loading ...</h3> }
+              {products.toShop.length ? (<ProductList toShop={products.toShop} toShopSize={products.toShopSize} limit={limit} loadMoreProducts={this.loadMoreProducts}/>) : <h4>Loading Product List...</h4> }
             </div>
             {products.toShopSize > 0 && products.toShopSize >= limit ? (
                 <div className="row">

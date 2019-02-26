@@ -61,7 +61,7 @@ class productDetailPage extends Component {
         <div className="row">
           {prodDetail ? 
             <ProductDetail prodDetail={prodDetail} increaseQuantity={this.doIncreaseCartItemQuantity}/>
-            : <h3>Loading ...</h3>
+            : <h4>Loading Product Detail...</h4>
           }
           <div className="col-md-3 col-sm-5">
             <Widgets />
