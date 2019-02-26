@@ -40,13 +40,13 @@ class productDetailPage extends Component {
                   <div className="row">
                     <div className="col-md-12">
 
-                      <h2>{prodDetail.name}</h2>
+                      <h1 style={{fontSize: 14}}>{prodDetail.name}</h1>
                       
                       <nav id="breadcrumbs">
                         <ul>
                           <li><Link to={"/"}>Home</Link></li>
                           <li><Link to={"/shop"}>Shop</Link></li>
-                          <li>{prodDetail.name}</li>
+                          <li>Product Detail</li>
                         </ul>
                       </nav>
 
