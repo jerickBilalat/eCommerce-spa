@@ -6,7 +6,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import promiseMiddleware from 'redux-promise';
 import thunk from 'redux-thunk';
-import ScrollToTop from './components/common/scrollToTop';
 
 import Reducer from './reducers';
 
@@ -15,9 +14,7 @@ const store = createStoreWithMiddleware(Reducer , window.__REDUX_DEVTOOLS_EXTENS
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <ScrollToTop>
         <App />
-      </ScrollToTop>
     </BrowserRouter>
   </Provider>
 , document.getElementById('root'));

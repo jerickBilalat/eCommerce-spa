@@ -1,12 +1,14 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {CLIENT_BASE_URL as baseURL} from "../../constants";
+import ScrollTo from "../common/scrollTo";
 
 const ProductDetail = ({prodDetail: {_id, name, price, images}, increaseQuantity}) => {
   const prodDetail = {id: _id, name, price, images};
   const imageLink = images && images.length ? images[0] : `${baseURL}/images/shop-09a.jpg`;
   return (
     <React.Fragment>
+        <ScrollTo x={0} y={140} />
         <div className="col-md-12 extra-gutter-right">
           <div className="with-btn margin-bottom-20">
             <Link to="/shop"><button className="button border medium">Back to shop</button></Link>

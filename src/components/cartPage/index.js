@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import currency from "currency.js";
 import { getSubTotal, getShippingTotal } from "../../reducers/cartReducer";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { clearCart, flashMessage } from "../../actions/cartActions";
 import { fetchProducts } from "../../actions/productActions";
 import { Link } from "react-router-dom";
+import ScrollTo from "../common/scrollTo";
 
 
 import {
@@ -50,7 +51,8 @@ class CartPage extends Component {
       const formFields = { ...this.state.formFields};
       this.setState({formFields});
     }
-    return this.setState({ showOrderConfirm: true });
+    this.setState({ showOrderConfirm: true });
+    return window.scrollTo(0, 140);
   };
 
   submitOrderForm = event => {
@@ -126,32 +128,37 @@ class CartPage extends Component {
   
     if (state.showOrderConfirm)
       return (
-        <OrderConfirm
+        <Fragment>
+          <OrderConfirm
+            formFields={this.state.formFields}
+            cartItems={props.cart.cartItems}
+            subTotal={props.subTotal}
+            shippingTotal={props.shippingTotal}
+            total={props.total}
+            doGoBackToCart={() => this.setState({ showOrderConfirm: false })}
+            submitOrderForm={this.submitOrderForm}
+          />
+        </Fragment>
+      );
+    return (
+      <Fragment>
+        <ScrollTo />
+        <Cart
           formFields={this.state.formFields}
+          updateFormState={this.updateFormState}
+          formErrors={this.state.formErrors}
+          submitForm={this.submitForm}
           cartItems={props.cart.cartItems}
+          products={props.toShop}
           subTotal={props.subTotal}
           shippingTotal={props.shippingTotal}
           total={props.total}
-          doGoBackToCart={() => this.setState({ showOrderConfirm: false })}
-          submitOrderForm={this.submitOrderForm}
+          deleteCartItem={deleteCartItem}
+          doRenderOrderConfirm={() => this.setState({ showOrderConfirm: true })}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
         />
-      );
-    return (
-      <Cart
-        formFields={this.state.formFields}
-        updateFormState={this.updateFormState}
-        formErrors={this.state.formErrors}
-        submitForm={this.submitForm}
-        cartItems={props.cart.cartItems}
-        products={props.toShop}
-        subTotal={props.subTotal}
-        shippingTotal={props.shippingTotal}
-        total={props.total}
-        deleteCartItem={deleteCartItem}
-        doRenderOrderConfirm={() => this.setState({ showOrderConfirm: true })}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-      />
+      </Fragment>
     );
   };
 
