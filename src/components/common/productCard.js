@@ -16,7 +16,7 @@ const productCard = ({productItem, dispatch}) => {
 						<figcaption className="item-description">
 							<Link to={`/product_detail/${id}`}><h5>{name}</h5></Link>
 							<span className="sale"> <mark>${price}</mark></span>
-							<button onClick={()=> dispatch(increaseCartItemQuantity({id, name, price}, 1))} className="button border medium">Add to Cart</button>
+							<button onClick={()=> dispatch(increaseCartItemQuantity({id, name, price}, 1))} className="button gray">Add to Cart</button>
 						</figcaption>
 					</figure>
 				</div>
