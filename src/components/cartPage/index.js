@@ -46,7 +46,6 @@ class CartPage extends Component {
     if (!this.courseFormIsValid()) {
       return toast.error("Form is not valid");
     }
-    console.log(this.state.formFields);
     if(this.state.formFields.message === "") {
       const formFields = { ...this.state.formFields};
       this.setState({formFields});
@@ -68,6 +67,7 @@ class CartPage extends Component {
     const { formFields } = this.state;
 
     const validEmailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const phoneRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
     if(formFields.name.length <= 0){
       isFormValid = false;
@@ -82,7 +82,15 @@ class CartPage extends Component {
       errors.email = "Enter a valid email";
     }
     
-    // validate phone
+    
+    let phoneNumber = formFields.phone;
+    if (phoneRegex.test(phoneNumber)) {
+        let formattedPhoneNumber = phoneNumber.replace(phoneRegex, "($1) $2-$3");
+        this.setState({ formFields: {phone: formattedPhoneNumber}})
+    } else {
+      isFormValid = false;
+      errors.phone = "Enter a valid phone number";
+    }
     
     
     this.setState({formErrors: errors});
