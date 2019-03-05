@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import Nav from "../common/mnRecNavigation";
-import {CLIENT_BASE_URL as baseURL} from "../../constants";
+import {CLIENT_MAIN_DOMAIN_URL as baseURL} from "../../constants";
 
 const header = () => {
   return (
@@ -10,11 +10,11 @@ const header = () => {
 
           <div className="col-md-3 col-sm-12">
             <div id="logo">
-              <a href="http://minnesotarec.surge.sh/index.html"><img src={`${baseURL}/images/mnreclogo.png`} alt=""/></a>
+              <a href={`${baseURL}/index.html`} ><img src={`${baseURL}/images/mnreclogo.png`} alt=""/></a>
             </div>
           </div>
 
-          <div className="col-md-9 col-sm-12">
+          <div className="hidden-xs">
             <ul className="header-widget">
               <li>
                 <i className="sl sl-icon-call-in"></i>
@@ -32,7 +32,7 @@ const header = () => {
                 </div>
               </li>
 
-              <li className="with-btn"><a href="http://minnesotarec.surge.sh/contact.html" className="button border medium">Request Service</a></li>
+              <li className="with-btn"><a href={`${baseURL}/contact.html`} className="button border medium">Request Service</a></li>
             </ul>
           </div>
           <div className="clearfix"></div>

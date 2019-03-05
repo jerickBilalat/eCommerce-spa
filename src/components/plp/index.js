@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProductList from "./productList";
 import Widgets from "../sideWidgets";
 import Layout from "../layout/defaultLayout";
-import { Link} from "react-router-dom";
+import {CLIENT_MAIN_DOMAIN_URL as baseURL} from "../../constants";
 
 import { connect } from 'react-redux';
 import {getBrands, getWoods, fetchProducts} from '../../actions/productActions';
@@ -64,7 +64,7 @@ class ProductListPage extends Component {
                   
                   <nav id="breadcrumbs">
                     <ul>
-                      <li><Link to={"/"}>Home</Link></li>
+                      <li><a href={`${baseURL}`}>Home</a></li>
                       <li>Shop</li>
                     </ul>
                   </nav>

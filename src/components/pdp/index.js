@@ -6,7 +6,7 @@ import Layout from "../layout/defaultLayout";
 import { getProductDetail, clearProductDetail } from '../../actions/productActions';
 import { increaseCartItemQuantity } from '../../actions/cartActions';
 import { Link } from "react-router-dom";
-
+import {CLIENT_MAIN_DOMAIN_URL as baseURL} from "../../constants";
 
 class productDetailPage extends Component {
 
@@ -44,7 +44,7 @@ class productDetailPage extends Component {
                       
                       <nav id="breadcrumbs">
                         <ul>
-                          <li><Link to={"/"}>Home</Link></li>
+                          <li><a href={`${baseURL}`} >Home</a></li>
                           <li><Link to={"/shop"}>Shop</Link></li>
                           <li>Product Detail</li>
                         </ul>

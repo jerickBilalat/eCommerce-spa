@@ -8,7 +8,7 @@ import { clearCart, flashMessage } from "../../actions/cartActions";
 import { fetchProducts } from "../../actions/productActions";
 import { Link } from "react-router-dom";
 import ScrollTo from "../common/scrollTo";
-
+import {CLIENT_MAIN_DOMAIN_URL as baseURL} from "../../constants";
 
 import {
   syncCart,
@@ -188,7 +188,7 @@ class CartPage extends Component {
                   
                   <nav id="breadcrumbs">
                     <ul>
-                      <li><Link to={"/"}>Home</Link></li>
+                      <li><a href={`${baseURL}`}>Home</a></li>
                       <li><Link to={"/shop"}>Shop</Link></li>
                       <li>Cart</li>
                     </ul>

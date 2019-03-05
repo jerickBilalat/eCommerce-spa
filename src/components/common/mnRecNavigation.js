@@ -4,18 +4,14 @@ import { connect } from "react-redux";
 
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import StarBorder from "@material-ui/icons/StarBorder";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
+import {CLIENT_MAIN_DOMAIN_URL as staticSiteBaseURL} from "../../constants";
 
 const styles = theme => ({
   list: {
@@ -31,7 +27,6 @@ const styles = theme => ({
     paddingLeft: "-56px"
   }
 });
-const staticSiteBaseURL = "http://minnesotarec.surge.sh";
 
 const navigationLinks = [{ name: "Shop", path: "/shop" }];
 const spoolStaticLinks = [
