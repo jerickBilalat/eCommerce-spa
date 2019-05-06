@@ -6,7 +6,7 @@ import Layout from "../layout/defaultLayout";
 import { Link} from "react-router-dom";
 
 import { connect } from 'react-redux';
-import {getBrands, getWoods, fetchProducts} from '../../actions/productActions';
+import {fetchProducts} from '../../actions/productActions';
 
 class ProductListPage extends Component {
 
@@ -23,8 +23,6 @@ class ProductListPage extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(getBrands());
-    this.props.dispatch(getWoods());
     this.props.dispatch(fetchProducts(
         this.state.skip,
         this.state.limit,

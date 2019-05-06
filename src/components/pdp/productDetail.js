@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import {CLIENT_BASE_URL as baseURL} from "../../constants";
 import ScrollTo from "../common/scrollTo";
 

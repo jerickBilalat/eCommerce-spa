@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {withRouter} from 'react-router-dom';
 
-class ScrollTo extends Component {
+class ScrollTo extends React.Component {
   componentDidMount() {
     const x = this.props.x || 0;
     const y = this.props.y || 140;
@@ -13,4 +13,4 @@ class ScrollTo extends Component {
   }
 }
 
-export default withRouter(ScrollTo)
+export default withRouter(ScrollTo);

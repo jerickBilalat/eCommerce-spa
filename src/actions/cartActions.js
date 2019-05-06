@@ -44,7 +44,6 @@ export function increaseCartItemQuantity(productDetails, differential) {
   }else {
     toast.success("Item added to cart");
   }
-  
     return {
       type: "MODIFY_ITEM_QNTY",
       payload: updatedItem
